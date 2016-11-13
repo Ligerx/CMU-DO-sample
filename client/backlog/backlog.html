@@ -1,0 +1,11 @@
+<body>
+<h3>Backlog</h3>
+<form class="new-task">
+	<input type="text" name="text" placeholder="Task Description" />
+</form>
+  <ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
+</body>
