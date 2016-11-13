@@ -1,5 +1,5 @@
-import { Tasks } from '/tasks/tasks.js'
-import '/tasks/methods.js'
+import { Tasks } from './tasks/tasks.js'
+import './tasks/methods.js'
 
 if (Meteor.isServer) {
   // This code only runs on the server
