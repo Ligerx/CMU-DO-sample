@@ -3,9 +3,9 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 // import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 // Import to load these templates
-import '../../ui/layouts/layout.html';
-import '../../ui/pages/backlog.html';
-import '../../ui/pages/dashboard.html';
+import '../../ui/layouts/layout.js';
+import '../../ui/pages/backlog.js';
+import '../../ui/pages/dashboard.js';
 
 // Import to override accounts templates
 // import '../../ui/accounts/accounts-templates.js'; // TODO: set up user accounts
