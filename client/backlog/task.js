@@ -1,14 +1,13 @@
 import { Template } from 'meteor/templating';
-// import { Tasks } from '../api/tasks.js';
+import { Tasks } from '../../imports/api/tasks.js';
 
 import './task.html';
 
-// Template.body.helpers({
-//   tasks() {
-//     return Tasks.find({});
-//   },
-// });
-
+Template.task.helpers({
+  log: function () {
+    console.log(this);
+  },
+});
 
 Template.task.events({
   'click .toggle-checked'() {

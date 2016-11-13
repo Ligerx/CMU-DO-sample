@@ -3,18 +3,17 @@ import { Tasks } from '../../imports/api/tasks.js';
 
 import './backlog.html';
 
-Template.body.onCreated(function bodyOnCreated() {
-  // this.state = new ReactiveDict();
+Template.backlog.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tasks');
 });
 
-Template.body.helpers({
+Template.backlog.helpers({
   tasks() {
-    return Tasks.find({});
+    return Tasks.find();
   },
 });
 
-Template.body.events({
+Template.backlog.events({
   'submit .new-task'(event) {
     console.log('attempting insert...');
     // Prevent default browser form submit
@@ -27,25 +26,9 @@ Template.body.events({
     console.log('The Text is: ' + text);
 
     // Insert a task into the collection
-    // Tasks.insert({
-    //   text,
-    //   createdAt: new Date(), // current time
-    // });
-
+    Meteor.call('tasks.insert', text)
 
     // Clear form
     target.text.value = '';
   },
 });
-
-// Template.task.events({
-//   'click .toggle-checked'() {
-//     // Set the checked property to the opposite of its current value
-//     Tasks.update(this._id, {
-//       $set: { checked: ! this.checked },
-//     });
-//   },
-//   'click .delete'() {
-//     Tasks.remove(this._id);
-//   },
-// });

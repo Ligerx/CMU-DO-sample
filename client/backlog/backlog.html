@@ -1,11 +1,15 @@
-<body>
-<h3>Backlog</h3>
-<form class="new-task">
-	<input type="text" name="text" placeholder="Task Description" />
-</form>
-  <ul>
-    {{#each tasks}}
-      {{> task}}
-    {{/each}}
-  </ul>
-</body>
+<template name="backlog">
+  <body>
+    <h3>Backlog</h3>
+
+    <form class="new-task">
+      <input type="text" name="text" placeholder="Task Description" />
+    </form>
+
+    <ul>
+      {{#each singleTask in tasks}}
+        {{> task task=singleTask}}
+      {{/each}}
+    </ul>
+  </body>
+</template>
