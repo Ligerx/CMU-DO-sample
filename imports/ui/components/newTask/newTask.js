@@ -1,19 +1,9 @@
 import { Template } from 'meteor/templating';
-import { Tasks } from '../../imports/api/tasks.js';
+import { Tasks } from '../../../api/api.js';
 
-import './backlog.html';
+import './newTask.html';
 
-Template.backlog.onCreated(function bodyOnCreated() {
-  Meteor.subscribe('tasks');
-});
-
-Template.backlog.helpers({
-  tasks() {
-    return Tasks.find();
-  },
-});
-
-Template.backlog.events({
+Template.newTask.events({
   'submit .new-task'(event) {
     console.log('attempting insert...');
     // Prevent default browser form submit
@@ -26,7 +16,9 @@ Template.backlog.events({
     console.log('The Text is: ' + text);
 
     // Insert a task into the collection
-    Meteor.call('tasks.insert', text)
+    Meteor.call('tasks.insert', text);
+
+    console.log('Num tasks is now: ' + Tasks.find().count());
 
     // Clear form
     target.text.value = '';
