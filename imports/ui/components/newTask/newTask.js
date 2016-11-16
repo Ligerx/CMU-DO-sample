@@ -3,6 +3,16 @@ import { Tasks } from '../../../api/api.js';
 
 import './newTask.html';
 
+Template.newTask.rendered=function() {
+  $('#duedate').datepicker();
+}
+
+Template.newTask.helpers({
+  categories: function(){
+    return ["Important-Urgent", "Not Important-Urgent", "Important-Nonurgent", "Backlog"]
+  },
+});
+
 Template.newTask.events({
   'submit .new-task'(event) {
     console.log('attempting insert...');

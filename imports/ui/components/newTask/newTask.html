@@ -1,5 +1,12 @@
 <template name="newTask">
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Task Description" />
-  </form>
+    <form class="new-task">
+      <input type="text" name="text" placeholder="Task Description" />
+      <select id="category-select">
+        <option disabled="disabled" selected="selected">Category</option> 
+        {{#each categories}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <input type="text" class="form-control" id="duedate" placeholder="Due Date">
+    </form>
 </template>
