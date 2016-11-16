@@ -6,7 +6,7 @@ Meteor.methods({
   'tasks.insert'(name, due_on, is_urgent, is_important ) {
     // check(text, String);
     new SimpleSchema({
-      id: {type: Number},
+      taskId: {type: Number},
       name: { type: String },
       completed_on: {type: Date, optional: true},
       created_on: {type: Date},
@@ -20,7 +20,7 @@ Meteor.methods({
     // }
 
     Tasks.insert({
-      id: Math.floor((Math.random() * 10000)),
+      taskId: Math.floor((Math.random() * 10000)),
       name,
       created_on: new Date(),
       due_on,
@@ -51,7 +51,7 @@ Meteor.methods({
   //     throw new Meteor.Error('not-authorized');
   //   }
 
-  //   Tasks.update(taskId, { $set: { checked: setChecked } });
+    Tasks.update(taskId, { $set: { completed_on: setCompleted_on } });
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
   //   check(taskId, String);
