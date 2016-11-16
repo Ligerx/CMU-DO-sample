@@ -21,6 +21,8 @@ Template.newTask.events({
 
     // Get value from form element
     const target = event.target;
+    const category = target.selected;
+    //const dueDate = target.duedate.value;
     const text = target.text.value;
 
     console.log('The Text is: ' + text);
