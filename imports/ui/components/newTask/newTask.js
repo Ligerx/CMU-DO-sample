@@ -3,9 +3,9 @@ import { Tasks } from '../../../api/api.js';
 
 import './newTask.html';
 
-Template.newTask.rendered=function() {
+Template.newTask.onCreated(function() {
   $('#duedate').datepicker();
-}
+});
 
 Template.newTask.helpers({
   categories: function(){
