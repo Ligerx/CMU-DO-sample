@@ -8,18 +8,24 @@ Meteor.methods({
     new SimpleSchema({
       id: {type: Number},
       name: { type: String },
+      completed_on: {type: Date, optional: true},
+      created_on: {type: Date},
       due_on: { type: Date },
       is_urgent: { type: Boolean},
       is_important: { type: Boolean}
-    }).validate({ todoId, newText });
+    }).validate({ name, due_on, is_urgent, is_important});
     // Make sure the user is logged in before inserting a task
     // if (! this.userId) {
     //   throw new Meteor.Error('not-authorized');
     // }
 
     Tasks.insert({
-      text,
-      createdAt: new Date(),
+      id: Math.floor((Math.random() * 10000)),
+      name,
+      created_on: new Date(),
+      due_on,
+      is_urgent,
+      is_important
       // owner: this.userId,
       // username: Meteor.users.findOne(this.userId).username,
     });
