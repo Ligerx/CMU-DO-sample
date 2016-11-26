@@ -3,10 +3,21 @@ import { Tasks } from '../../../api/api.js';
 
 import './newTask.html';
 
+Template.datepicker.rendered = function() {
+  this.$('.datepicker').datepicker({
+    autoclose: true,
+  });
+};
 
 Template.newTask.rendered = function() {
-    $('#duedate').datepicker();
 
+    $(".duedate").popover({
+        html: true,
+        title: 'Choose Due Date',
+        content: function() {
+            return $("#duedate-content").html();
+        }
+    });
     $(".priority").popover({
         html: true,
         title: 'Choose Priority',

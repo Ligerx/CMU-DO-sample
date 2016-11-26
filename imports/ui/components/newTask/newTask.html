@@ -13,15 +13,29 @@
       </select>
       </div> 
       <input type="text" name="due" class="form-control" id="duedate" placeholder="Due Date">-->
+        <button name="duedate" class="glyphicon glyphicon-calendar" type="button" data-container="body" data-toggle="popover" data-placement="right"></button>
+        <div id="duedate-content" class="hide">
+        {{> datepicker}}
+        </div>
 
-         <button name="priority" class="glyphicon glyphicon-plus priority" type="button" data-container="body" data-toggle="popover" data-placement="right"></button>
+         <button name="priority" class="glyphicon glyphicon-sort-by-attributes-alt" type="button" data-container="body" data-toggle="popover" data-placement="right"></button>
         <div id="popover-content" class="hide">
         {{> choosePriority}}
         </div>
-
+        <span>
+        <input type="submit" class="btn btn-primary" value="Save and Add More">
+        </span>
     </form>
 </template>
 
 <template name="choosePriority">
   {{taskCount}}
+</template>
+
+<template name="datepicker">
+  <form class="form-inline mod-field item-due">  
+    <div class="mod-field">
+      <span>Due date: </span><input type="text" name="text" class="datepicker" />
+    </div>
+  </form>
 </template>
