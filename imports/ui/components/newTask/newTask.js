@@ -10,17 +10,10 @@ Template.datepicker.rendered = function() {
 };
 
 Template.newTask.rendered = function() {
-
-    $(".duedate").popover({
+  console.log('attempting render...');
+    $(".setPriority").popover({
         html: true,
-        title: 'Choose Due Date',
-        content: function() {
-            return $("#duedate-content").html();
-        }
-    });
-    $(".priority").popover({
-        html: true,
-        title: 'Choose Priority',
+        title: 'Select Priority',
         content: function() {
             return $("#popover-content").html();
         }
@@ -32,10 +25,6 @@ Template.choosePriority.helpers({
     //Change later
     return Tasks.find().count();
   },
-});
-
-Template.newTask.onCreated(function() {
-  $('#duedate').datepicker();
 });
 
 Template.newTask.helpers({

@@ -4,32 +4,55 @@
       <div class="form-group">
       <input type="text" name="text" placeholder="Task Description" />
       </div>
-      <!--<div class="form-group">
-      <select id="category-select">
-        <option disabled="disabled" selected="selected">Category</option> 
-        {{#each categories}}
-          <option value="{{this}}" name="category">{{this}}</option>
-        {{/each}}
-      </select>
-      </div> 
-      <input type="text" name="due" class="form-control" id="duedate" placeholder="Due Date">-->
-        <button name="duedate" class="glyphicon glyphicon-calendar" type="button" data-container="body" data-toggle="popover" data-placement="right"></button>
-        <div id="duedate-content" class="hide">
-        {{> datepicker}}
-        </div>
 
-         <button name="priority" class="glyphicon glyphicon-sort-by-attributes-alt" type="button" data-container="body" data-toggle="popover" data-placement="right"></button>
+        {{> datepicker}}
+
+        <button name="setPriority" class="glyphicon glyphicon-th-large setPriority" type="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom"></button>
         <div id="popover-content" class="hide">
         {{> choosePriority}}
         </div>
-        <span>
-        <input type="submit" class="btn btn-primary" value="Save and Add More">
-        </span>
+        
     </form>
 </template>
 
 <template name="choosePriority">
   {{taskCount}}
+  
+  <table style="width: 100%;">
+  <tbody>
+  <tr>
+  <td class="block" height="200" bgcolor="#f2dede">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part A</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  <td class="last" height="200" bgcolor="#dff0d8">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part B</strong><br>
+        <span>Important</span>
+      </a>
+  </td>
+  </tr>
+  <tr>
+  <td class="block" height="200" bgcolor="#fcf8e3">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part C</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  <td class="last" height="200" bgcolor="#e1e1e1">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part D</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+
+
 </template>
 
 <template name="datepicker">
