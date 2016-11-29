@@ -51,7 +51,10 @@ Meteor.methods({
   //     throw new Meteor.Error('not-authorized');
   //   }
 
-    Tasks.update(taskId, { $set: { completed_on: setCompleted_on } });
+
+  'tasks.update' (taskId, completed_on) {
+    Tasks.update( {taskId: taskId }, {completed_on: completed_on});
+   }
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
   //   check(taskId, String);
