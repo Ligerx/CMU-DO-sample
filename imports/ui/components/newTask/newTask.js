@@ -3,14 +3,35 @@ import { Tasks } from '../../../api/api.js';
 
 import './newTask.html';
 
-Template.newTask.rendered=function() {
-  $('#duedate').datepicker();
+Template.datepicker.rendered = function() {
+  this.$('.datepicker').datepicker({
+    autoclose: true,
+  });
+};
+
+Template.newTask.rendered = function() {
+  console.log('attempting render...');
+    $(".setPriority").popover({
+        html: true,
+        title: 'Select Priority',
+        content: function() {
+            return $("#popover-content").html();
+        }
+    });
 }
+
+Template.choosePriority.helpers({
+  taskCount: function() {
+    //Change later
+    return Tasks.find().count();
+  },
+});
 
 Template.newTask.helpers({
   categories: function(){
     return ["Important-Urgent", "Not Important-Urgent", "Important-Nonurgent", "Backlog"]
   },
+
 });
 
 Template.newTask.events({

@@ -1,11 +1,10 @@
 <template name="task">
   <li class="{{#if task.checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
-
+    
     <input type="checkbox" checked="{{task.checked}}" class="toggle-checked" />
 
     <span class="text">{{task.text}}</span>
     {{log}}
-
+    <!--<button class="delete">&times;</button>-->
   </li>
 </template>
