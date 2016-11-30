@@ -11,7 +11,6 @@ Meteor.methods({
     // }
 
     Tasks.insert({
-      _id,
       name,
       created_on: new Date(),
       due_on,
@@ -43,8 +42,8 @@ Meteor.methods({
   //   }
 
 
-  'tasks.update' (_id, completed_on) {
-    Tasks.update( {_id : _id }, {completed_on: completed_on});
+  'tasks.update' (id, completed_on) {
+    Tasks.update( {_id : id }, {completed_on: completed_on});
    }
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
