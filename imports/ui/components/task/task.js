@@ -24,6 +24,6 @@ Template.task.helpers({
 
 Template.task.events({
   'click .toggle-checked'() {
-    Meteor.call('tasks.complete_task', this.task._id);
+    Meteor.call('tasks.toggle_completed', this.task._id);
   },
 });
