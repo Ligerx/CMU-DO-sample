@@ -3,17 +3,29 @@ import { check } from 'meteor/check';
 import { Tasks } from './tasks.js';
 
 Meteor.methods({
-  'tasks.insert'(text) {
-    check(text, String);
-
+  'tasks.insert'(name, due_on, is_urgent, is_important ) {
+    // check(text, String);
+    new SimpleSchema({
+      taskId: {type: Number},
+      name: { type: String },
+      completed_on: {type: Date, optional: true},
+      created_on: {type: Date},
+      due_on: { type: Date },
+      is_urgent: { type: Boolean},
+      is_important: { type: Boolean}
+    }).validate({ name, due_on, is_urgent, is_important});
     // Make sure the user is logged in before inserting a task
     // if (! this.userId) {
     //   throw new Meteor.Error('not-authorized');
     // }
 
     Tasks.insert({
-      text,
-      createdAt: new Date(),
+      taskId: Math.floor((Math.random() * 10000)),
+      name,
+      created_on: new Date(),
+      due_on,
+      is_urgent,
+      is_important
       // owner: this.userId,
       // username: Meteor.users.findOne(this.userId).username,
     });
@@ -39,7 +51,10 @@ Meteor.methods({
   //     throw new Meteor.Error('not-authorized');
   //   }
 
-  //   Tasks.update(taskId, { $set: { checked: setChecked } });
+
+  'tasks.update' (taskId, completed_on) {
+    Tasks.update( {taskId: taskId }, {completed_on: completed_on});
+   }
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
   //   check(taskId, String);
