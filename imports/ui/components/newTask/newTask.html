@@ -1,5 +1,64 @@
 <template name="newTask">
-  <form class="new-task">
-    <input type="text" name="text" placeholder="Task Description" />
+  <h2>New Task</h2>
+    <form class="new-task">
+      <div class="form-group">
+      <input type="text" name="text" placeholder="Task Description" />
+      </div>
+
+        {{> datepicker}}
+
+        <button name="setPriority" class="glyphicon glyphicon-th-large setPriority" type="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom"></button>
+        <div id="popover-content" class="hide">
+        {{> choosePriority}}
+        </div>
+        
+    </form>
+</template>
+
+<template name="choosePriority">
+  {{taskCount}}
+  
+  <table style="width: 100%;">
+  <tbody>
+  <tr>
+  <td class="block" height="200" bgcolor="#f2dede">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part A</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  <td class="last" height="200" bgcolor="#dff0d8">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part B</strong><br>
+        <span>Important</span>
+      </a>
+  </td>
+  </tr>
+  <tr>
+  <td class="block" height="200" bgcolor="#fcf8e3">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part C</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  <td class="last" height="200" bgcolor="#e1e1e1">
+      <a href="#" class="btn-squarecell" role="button">
+        <strong>Part D</strong><br>
+        <span>Important and Urgent</span>
+      </a>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+
+
+</template>
+
+<template name="datepicker">
+  <form class="form-inline mod-field item-due">  
+    <div class="mod-field">
+      <span>Due date: </span><input type="text" name="text" class="datepicker" />
+    </div>
   </form>
 </template>

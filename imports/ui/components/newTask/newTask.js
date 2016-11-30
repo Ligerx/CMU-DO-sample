@@ -3,6 +3,37 @@ import { Tasks } from '../../../api/api.js';
 
 import './newTask.html';
 
+Template.datepicker.rendered = function() {
+  this.$('.datepicker').datepicker({
+    autoclose: true,
+  });
+};
+
+Template.newTask.rendered = function() {
+  console.log('attempting render...');
+    $(".setPriority").popover({
+        html: true,
+        title: 'Select Priority',
+        content: function() {
+            return $("#popover-content").html();
+        }
+    });
+}
+
+Template.choosePriority.helpers({
+  taskCount: function() {
+    //Change later
+    return Tasks.find().count();
+  },
+});
+
+Template.newTask.helpers({
+  categories: function(){
+    return ["Important-Urgent", "Not Important-Urgent", "Important-Nonurgent", "Backlog"]
+  },
+
+});
+
 Template.newTask.events({
   'submit .new-task'(event) {
     console.log('attempting insert...');
@@ -11,6 +42,8 @@ Template.newTask.events({
 
     // Get value from form element
     const target = event.target;
+    const category = target.selected;
+    //const dueDate = target.duedate.value;
     const text = target.text.value;
 
     console.log('The Text is: ' + text);
