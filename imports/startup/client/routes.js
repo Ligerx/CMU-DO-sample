@@ -18,12 +18,6 @@ FlowRouter.route('/dashboard', {
   }
 });
 
-FlowRouter.route('/backlog', {
-  action: function(params, queryParams) {
-    BlazeLayout.render('layout', { page: 'backlog' })
-  }
-});
-
 FlowRouter.route('/history', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'history' });
