@@ -35,15 +35,11 @@ Template.dashboard.helpers({
     });
   },
 
-  // Meteor.publish('urgent', function sort() {
-  //   return Tasks.find({}, {sort: {is_urgent: 1}})
-  // })
-
-  // Meteor.publish('important', function sort() {
-  //   return Tasks.find({}, {sort: {is_important: 1}})
-  // })
-
-  // Meteor.publish('sort', function sort() {
-  //   return Tasks.find({}, {sort: {is_urgent: 1, is_important: 1}})
-  // })
+  completedTasks() {
+    return Tasks.find({
+      completed_on: { $ne:null }
+    }, {
+      sort: { completed_on: -1 }
+    });
+  },
 });
