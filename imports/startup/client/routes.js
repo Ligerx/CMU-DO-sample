@@ -29,3 +29,9 @@ FlowRouter.route('/history', {
     BlazeLayout.render('layout', { page: 'history' });
   }
 });
+
+FlowRouter.route('/', {
+  triggersEnter: [function(context, redirect) {
+    redirect('/dashboard');
+  }]
+});
