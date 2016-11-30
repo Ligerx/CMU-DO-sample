@@ -28,6 +28,7 @@ Template.dashboard.helpers({
     console.log(blah);
 
     return Tasks.find({
+      completed_on: null,
       is_sorted,
       is_urgent,
       is_important,
