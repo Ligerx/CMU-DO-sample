@@ -28,21 +28,11 @@ Template.dashboard.helpers({
     console.log(blah);
 
     return Tasks.find({
+      completed_on: null,
       is_sorted,
       is_urgent,
       is_important,
     });
   },
 
-  // Meteor.publish('urgent', function sort() {
-  //   return Tasks.find({}, {sort: {is_urgent: 1}})
-  // })
-
-  // Meteor.publish('important', function sort() {
-  //   return Tasks.find({}, {sort: {is_important: 1}})
-  // })
-
-  // Meteor.publish('sort', function sort() {
-  //   return Tasks.find({}, {sort: {is_urgent: 1, is_important: 1}})
-  // })
 });

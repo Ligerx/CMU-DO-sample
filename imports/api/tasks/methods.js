@@ -47,8 +47,19 @@ Meteor.methods({
     // Tasks.update( {taskId: taskId }, {completed_on: completed_on});
    },
 
-  'tasks.complete_task' (taskId) {
-    Tasks.update({ _id: taskId }, { completed_on: new Date() });
+  'tasks.toggle_completed' (taskId) {
+    const task = Tasks.findOne({ _id: taskId });
+
+    // console.log(taskId);
+    // console.log(task);
+    // console.log(this.userId);
+    // console.log(task.user_id);
+
+    if (this.userId !== task.user_id) { throw new Meteor.Error('not-authorized'); }
+
+    // Toggle between null and a new date depending on if the current completed_on exists (falsy)
+    const newCompletedOn = task.completed_on ? null : new Date();
+    Tasks.update({ _id: taskId }, { $set: { completed_on: newCompletedOn } });
   },
 
   // },

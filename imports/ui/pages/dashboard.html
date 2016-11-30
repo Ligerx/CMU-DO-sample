@@ -2,17 +2,17 @@
   <div class="container">
     <h1>Unsorted Tasks</h1>
     <ul>
-      {{! #each singleTask in allTasks}}
-        {{! > task task=singleTask}}
-      {{! /each}}
-    </ul>
-
-    <ul>
       {{#each singleTask in (filteredTasks is_sorted=false) }}
         {{> task task=singleTask}}
       {{/each}}
     </ul>
 
+    <h1>Urgent and Important Tasks</h1>
+    <ul>
+      {{#each singleTask in (filteredTasks is_urgent=true is_important=true) }}
+        {{> task task=singleTask}}
+      {{/each}}
+    </ul>
 
     <!-- Large modal -->
     <div class="newtaskbutton">
