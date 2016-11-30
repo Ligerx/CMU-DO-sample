@@ -4,7 +4,6 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 // Import to load these templates
 import '../../ui/layouts/layout.js';
-import '../../ui/pages/backlog.js';
 import '../../ui/pages/dashboard.js';
 import '../../ui/pages/history.js';
 
@@ -15,12 +14,6 @@ import '../../ui/pages/history.js';
 FlowRouter.route('/dashboard', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'dashboard' });
-  }
-});
-
-FlowRouter.route('/backlog', {
-  action: function(params, queryParams) {
-    BlazeLayout.render('layout', { page: 'backlog' })
   }
 });
 

@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Tasks } from '../../api/api.js';
 
 import './history.html';
-import '../components/task/task.js';
+import '../components/taskList/taskList.js';
 
 Template.history.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tasks');
