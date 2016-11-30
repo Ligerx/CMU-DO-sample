@@ -6,6 +6,7 @@ import './newTask.html';
 Template.datepicker.rendered = function() {
   this.$('#datepicker').datepicker({
     autoclose: true,
+    todayHighlight: true,
   });
 };
 
