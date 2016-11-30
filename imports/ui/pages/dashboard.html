@@ -2,16 +2,12 @@
   <div class="container">
     <h1>Unsorted Tasks</h1>
     <ul>
-      {{#each singleTask in (filteredTasks is_sorted=false) }}
-        {{> task task=singleTask}}
-      {{/each}}
+      {{> taskList tasks=(filteredTasks is_sorted=false) }}
     </ul>
 
     <h1>Urgent and Important Tasks</h1>
     <ul>
-      {{#each singleTask in (filteredTasks is_urgent=true is_important=true) }}
-        {{> task task=singleTask}}
-      {{/each}}
+      {{> taskList tasks=(filteredTasks is_urgent=true is_important=true) }}
     </ul>
 
     <!-- Large modal -->

@@ -3,6 +3,7 @@ import { Tasks } from '../../api/api.js';
 
 import './dashboard.html';
 import '../components/newTask/newTask.js';
+import '../components/taskList/taskList.js';
 import '../components/task/task.js';
 
 Template.dashboard.onCreated(function bodyOnCreated() {
