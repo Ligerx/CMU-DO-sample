@@ -1,5 +1,9 @@
 <template name="taskList">
-  {{#each singleTask in tasks }}
-    {{> task task=singleTask}}
-  {{/each}}
+  <h1>{{title}}</h1>
+
+  <ul>
+    {{#each singleTask in tasks }}
+      {{> task task=singleTask}}
+    {{/each}}
+  </ul>
 </template>

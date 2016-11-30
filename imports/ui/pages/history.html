@@ -1,11 +1,9 @@
 <template name="history">
   <div class="container">
 
-    <h1>Completed Tasks</h1>
-
-    <ul>
-      {{> taskList tasks=completedTasks }}
-    </ul>
+    {{> taskList
+          title="Completed Tasks"
+          tasks=completedTasks }}
 
   </div><!-- /.container -->
 </template>

@@ -1,14 +1,12 @@
 <template name="dashboard">
   <div class="container">
-    <h1>Unsorted Tasks</h1>
-    <ul>
-      {{> taskList tasks=(filteredTasks is_sorted=false) }}
-    </ul>
+    {{> taskList
+          title="Unsorted Tasks"
+          tasks=(filteredTasks is_sorted=false) }}
 
-    <h1>Urgent and Important Tasks</h1>
-    <ul>
-      {{> taskList tasks=(filteredTasks is_urgent=true is_important=true) }}
-    </ul>
+    {{> taskList
+          title="Urgent and Important Tasks"
+          tasks=(filteredTasks is_urgent=true is_important=true) }}
 
     <!-- Large modal -->
     <div class="newtaskbutton">
