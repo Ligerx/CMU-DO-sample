@@ -53,8 +53,13 @@ Meteor.methods({
 
 
   'tasks.update' (taskId, completed_on) {
-    Tasks.update( {taskId: taskId }, {completed_on: completed_on});
-   }
+    // Tasks.update( {taskId: taskId }, {completed_on: completed_on});
+   },
+
+  'tasks.complete_task' (taskId) {
+    Tasks.update({ _id: taskId }, { completed_on: new Date() });
+  },
+
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
   //   check(taskId, String);
