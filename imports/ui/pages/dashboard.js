@@ -10,18 +10,39 @@ Template.dashboard.onCreated(function bodyOnCreated() {
 });
 
 Template.dashboard.helpers({
-  tasks() {
+  allTasks() {
     return Tasks.find();
   },
-  Meteor.publish('urgent', function sort() {
-    return Tasks.find({}, {sort: {is_urgent: 1}})
-  })
 
-  Meteor.publish('important', function sort() {
-    return Tasks.find({}, {sort: {is_important: 1}})
-  })
+  filteredTasks(kw = { hash: {} }) {
+    // Use this helper to find tasks that satisfy certain params
+    // e.g. to find only important tasks, you could use {{ #each singleTask in (test is_important=true) }}
+    // Default values are found on the line below.
+    // You can read about what kw is here: http://blazejs.org/api/spacebars.html#Helper-Arguments
+    console.log(kw);
 
-  Meteor.publish('sort', function sort() {
-    return Tasks.find({}, {sort: {is_urgent: 1, is_important: 1}})
-  })
+    let { is_sorted = true, is_urgent = false, is_important = false } = kw.hash;
+    console.log('Filtering tasks // sorted ' + is_sorted + ', urgent ' + is_urgent + ', important ' + is_important);
+
+    let blah = {is_sorted, is_urgent, is_important};
+    console.log(blah);
+
+    return Tasks.find({
+      is_sorted,
+      is_urgent,
+      is_important,
+    });
+  },
+
+  // Meteor.publish('urgent', function sort() {
+  //   return Tasks.find({}, {sort: {is_urgent: 1}})
+  // })
+
+  // Meteor.publish('important', function sort() {
+  //   return Tasks.find({}, {sort: {is_important: 1}})
+  // })
+
+  // Meteor.publish('sort', function sort() {
+  //   return Tasks.find({}, {sort: {is_urgent: 1, is_important: 1}})
+  // })
 });
