@@ -482,3 +482,9 @@ input[type=checkbox] {
        -moz-border-radius: 8px;
             border-radius: 8px;
     }
+
+.modal-dialog {
+top:42px;
+right:0%;
+outline: none;
+}
