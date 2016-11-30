@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { Tasks } from './tasks.js';
 
 Meteor.methods({
-  'tasks.insert'(name, due_on, is_urgent, is_important ) {
+  'tasks.insert'(name, due_on, is_sorted, is_urgent, is_important ) {
     // check(text, String);
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
@@ -14,6 +14,7 @@ Meteor.methods({
       name,
       created_on: new Date(),
       due_on,
+      is_sorted,
       is_urgent,
       is_important,
       owner: this.userId,
