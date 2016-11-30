@@ -35,11 +35,4 @@ Template.dashboard.helpers({
     });
   },
 
-  completedTasks() {
-    return Tasks.find({
-      completed_on: { $ne:null }
-    }, {
-      sort: { completed_on: -1 }
-    });
-  },
 });
