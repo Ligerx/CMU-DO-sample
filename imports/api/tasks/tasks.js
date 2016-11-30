@@ -1,7 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 
-export const Tasks = new Mongo.Collection('tasks');
-
 var Schemas = {};
 
 Schemas.Tasks = new SimpleSchema({
@@ -15,3 +13,5 @@ Schemas.Tasks = new SimpleSchema({
 });
 
 Tasks.attachSchema(Schemas.Tasks);
+
+export {Tasks}
