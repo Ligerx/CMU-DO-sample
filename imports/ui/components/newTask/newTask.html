@@ -2,7 +2,7 @@
   <h2>New Task</h2>
     <form class="new-task">
       <div class="form-group">
-      <input type="text" name="text" placeholder="Task Description" />
+      <input type="text" name="name" placeholder="Task Description" />
       </div>
 
         {{> datepicker}}
@@ -11,13 +11,16 @@
         <div id="popover-content" class="hide">
         {{> choosePriority}}
         </div>
-        
+
+        <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
+        <input type="submit" name="save" value="Save" class="btn btn-primary save"/>
+
     </form>
 </template>
 
 <template name="choosePriority">
   {{taskCount}}
-  
+
   <table style="width: 100%;">
   <tbody>
   <tr>
@@ -56,9 +59,9 @@
 </template>
 
 <template name="datepicker">
-  <form class="form-inline mod-field item-due">  
+  <!-- <form class="form-inline mod-field item-due"> -->
     <div class="mod-field">
-      <span>Due date: </span><input type="text" name="text" class="datepicker" />
+      <span>Due date: </span><input type="text" name="date" class="datepicker" id="datepicker" />
     </div>
-  </form>
+  <!-- </form> -->
 </template>

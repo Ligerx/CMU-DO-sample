@@ -1,39 +1,30 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
 import { Tasks } from './tasks.js';
 
 Meteor.methods({
-  'tasks.insert'(name, due_on, is_urgent, is_important ) {
-    // check(text, String);
-    new SimpleSchema({
-      taskId: {type: Number},
-      name: { type: String },
-      completed_on: {type: Date, optional: true},
-      created_on: {type: Date},
-      due_on: { type: Date },
-      is_urgent: { type: Boolean},
-      is_important: { type: Boolean}
-    }).validate({ name, due_on, is_urgent, is_important});
-
+  'tasks.insert'(name, due_on = null, is_sorted = false, is_urgent = false, is_important = false) {
+    console.log('In tasks.insert');
 
     // Make sure the user is logged in before inserting a task
-    if (! this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+    if (! this.userId) { throw new Meteor.Error('not-authorized'); }
+    if (! name) { throw new Meteor.Error('task-name-blank'); }
+
+    console.log('Task should have been inserted');
+    console.log('User id is:');
+    console.log(this.userId);
 
     Tasks.insert({
-      taskId: Math.floor((Math.random() * 10000)),
-      name,
+      user_id: this.userId,
       created_on: new Date(),
+      name,
       due_on,
+      is_sorted,
       is_urgent,
       is_important,
-      owner: this.userId,
-      // username: Meteor.users.findOne(this.userId).username,
     });
   },
+
   // 'tasks.remove'(taskId) {
-  //   check(taskId, String);
 
   //   const task = Tasks.findOne(taskId);
   //   if (task.private && task.owner !== this.userId) {
@@ -44,8 +35,6 @@ Meteor.methods({
   //   Tasks.remove(taskId);
   // },
   // 'tasks.setChecked'(taskId, setChecked) {
-  //   check(taskId, String);
-  //   check(setChecked, Boolean);
 
   //   const task = Tasks.findOne(taskId);
   //   if (task.private && task.owner !== this.userId) {
@@ -64,8 +53,6 @@ Meteor.methods({
 
   // },
   // 'tasks.setPrivate'(taskId, setToPrivate) {
-  //   check(taskId, String);
-  //   check(setToPrivate, Boolean);
 
   //   const task = Tasks.findOne(taskId);
 
