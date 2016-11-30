@@ -4,7 +4,7 @@ import { Tasks } from '../../../api/api.js';
 import './task.html';
 
 Template.task.helpers({
-  date: function() {
+  date() {
     // console.log('blah');
     // console.log(this);
     // console.log(this.task);
@@ -17,7 +17,12 @@ Template.task.helpers({
     return curr_month + "/" + curr_date + "/" + curr_year;
   },
 
-  log: function () {
+  isCompleted() {
+    // Coerce the date value into a boolean
+    return !!this.task.completed_on;
+  },
+
+  log() {
     console.log(this);
   },
 });
