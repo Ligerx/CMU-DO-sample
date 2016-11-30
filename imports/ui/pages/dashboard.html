@@ -7,6 +7,13 @@
       {{/each}}
     </ul>
 
+    <h1>Urgent and Important Tasks</h1>
+    <ul>
+      {{#each singleTask in (filteredTasks is_urgent=true is_important=true) }}
+        {{> task task=singleTask}}
+      {{/each}}
+    </ul>
+
     <!-- Large modal -->
     <div class="newtaskbutton">
     <button class="btn btn-xlarge" data-toggle="modal" data-target=".bd-example-modal-lg">Add Task</button>

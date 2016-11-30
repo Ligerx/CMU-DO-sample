@@ -25,6 +25,39 @@ Template.task.helpers({
   log() {
     console.log(this);
   },
+
+  printPriority() {
+    // TODO: Maybe make this a global helper to be more DRY
+    //       newTask.js has a method like this.
+
+    //// This is broken
+    // const task = this.task;
+    // const array = [];
+    // const priorities = {
+    //   'is_important': 'Important',
+    //   'is_urgent': 'Urgent',
+    // }
+
+    // priorities.forEach(function({val, print}) {
+    //   if( task[val] ) { array.push(print); }
+    // });
+
+    // return array.join(' and ');
+
+    const task = this.task;
+    if(task.is_important && task.is_urgent) {
+      return "Important and Urgent";
+    }
+    else if(task.is_important) {
+      return "Important";
+    }
+    else if(task.is_urgent) {
+      return "Urgent";
+    }
+    else {
+      return "";
+    }
+  },
 });
 
 Template.task.events({

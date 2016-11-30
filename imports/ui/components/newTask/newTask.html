@@ -7,12 +7,18 @@
 
         {{> datepicker}}
 
-        <button name="setPriority" class="glyphicon glyphicon-th-large setPriority" type="button" data-container="body" data-toggle="popover" data-placement="bottom"></button>
+        <button name="setPriority" class="glyphicon glyphicon-th-large setPriority" type="button" data-container="body" data-toggle="popover" data-placement="bottom">
+          Priority
+        </button>
+        <!-- FIXME: data-trigger="focus" makes the popover not appear, however, it's needed to make the popover disappear when you click away... -->
+
+        <span>{{printPriority}}</span>
 
         <div id="popover-content" class="hide">
           {{> choosePriority}}
         </div>
 
+        <br/>
         <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
         <input type="submit" name="save" value="Save" class="btn btn-primary save"/>
 

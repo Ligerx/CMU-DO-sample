@@ -29,10 +29,24 @@ Template.choosePriority.helpers({
 });
 
 Template.newTask.helpers({
-  categories: function(){
-    return ["Important-Urgent", "Not Important-Urgent", "Important-Nonurgent", "Backlog"]
-  },
+  printPriority() {
+  //// This is broken, similar method in task.js you might want to refer to
+  //   const task = this.task;
+  //   const array = [];
 
+  //   const priorities = {
+  //     'is_important': 'Important',
+  //     'is_urgent': 'Urgent',
+  //   }
+
+  //   priorities.forEach(function({val, print}) {
+  //     if( task[val] ) { array.push(print); }
+  //   });
+
+  //   return array.join(' and ');
+  // },
+    return "Still implementing."
+  }
 });
 
 Template.newTask.events({
