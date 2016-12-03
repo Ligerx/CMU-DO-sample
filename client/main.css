@@ -108,28 +108,10 @@ nav a {
     background: #0099cc;
     color: #ffffff;
 }
-<<<<<<< HEAD
-
-.btn-squarecell {
-    color: #323232;
-    padding: 18px 28px;
-    font-size: 22px;
-    line-height: normal;
-    -webkit-border-radius: 8px;
-       -moz-border-radius: 8px;
-            border-radius: 8px;
-    }
-
-.modal-dialog {
-top:42px;
-right:0%;
-outline: none;
-=======
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     background: #33a6cc;
 }
 .btn-primary:active, .btn-primary.active {
     background: #007299;
     box-shadow: none;
->>>>>>> 0eb373368927806601f4ec3dbb08cae58fb3785c
 }
