@@ -116,16 +116,13 @@ nav a {
     box-shadow: none;
 }
 
-.hiddenRadio {
-    position: absolute;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    -ms-appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
+.hidden-radio {
+    display : none;
+}
+
+.square-cell {
+  margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 }

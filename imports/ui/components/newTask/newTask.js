@@ -50,18 +50,18 @@ Template.newTask.helpers({
 });
 
 Template.newTask.events({
-
+  
   'change .prioritySelect': function(event){
     console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
-        console.log('Ankoku!');
+        console.log('i-u');
         break;
       case '2':
-        console.log('By the Power of Greyskull!');
+        console.log('i');
         break;
       default:
-        console.log('By the authority of the Moon!');
+        console.log('other');
         break;
     }
   },
@@ -101,7 +101,8 @@ Template.newTask.events({
     // console.log('The task due date is: ' + date);
 
     // Insert a task into the collection
-    Meteor.call('tasks.insert', name, date, false, is_urgent, is_important, function(error) {
+    var s = is_urgent||is_important;
+    Meteor.call('tasks.insert', name, date, is_urgent||is_important, is_urgent, is_important, function(error) {
       if(error) {
         // Maybe some validation error here.
         // e.g. say that a task name is required.
