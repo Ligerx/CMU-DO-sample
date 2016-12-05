@@ -35,4 +35,20 @@ Template.dashboard.helpers({
     });
   },
 
+  tasksAreSelected() {
+    const numTasksSelected = Session.get('numTasksSelected') || 0;
+    return numTasksSelected > 0 ? true : false;
+  },
+
+  editTasksButtonText() {
+    const numTasksSelected = Session.get('numTasksSelected') || 0;
+
+    if(numTasksSelected === 1) {
+      return 'Edit Task';
+    }
+    else {
+      return 'Edit ' + numTasksSelected + ' Tasks'
+    }
+  }
+
 });
