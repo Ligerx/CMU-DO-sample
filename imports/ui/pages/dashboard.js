@@ -61,9 +61,14 @@ Template.dashboard.events({
 
     const selectedTasks = $('.task.selected');
 
-    console.log(selectedTasks);
-    selectedTasks.each(function(index, element) {
-      console.log($(element).data('id'));
+    const selectedIDs = selectedTasks.map(function(index, element) {
+      return $(element).data('id');
+    }).toArray();
+
+    const tasks = Tasks.find({"_id": { "$in": selectedIDs }}).fetch();
+
+    tasks.forEach(function(task) {
+      console.log(task);
     });
   },
 
