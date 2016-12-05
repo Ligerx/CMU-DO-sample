@@ -115,3 +115,14 @@ nav a {
     background: #007299;
     box-shadow: none;
 }
+
+.hidden-radio {
+    display : none;
+}
+
+.square-cell {
+  margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}

@@ -50,6 +50,22 @@ Template.newTask.helpers({
 });
 
 Template.newTask.events({
+  
+  'change .prioritySelect': function(event){
+    console.log(event.currentTarget.value);
+    switch(event.currentTarget.value) {
+      case '1':
+        console.log('i-u');
+        break;
+      case '2':
+        console.log('i');
+        break;
+      default:
+        console.log('other');
+        break;
+    }
+  },
+
   'submit .new-task'(event) {
     // console.log('attempting insert...');
 
@@ -60,14 +76,33 @@ Template.newTask.events({
     const target = event.target;
 
     // console.log(target);
+    var is_urgent = false;
+    var is_important = false;
     const name = target.name.value;
     const date = target.date.value; // not sure if I need to pass a string or a Date object?
+    const radioValue = event.target.priority.value;
+
+    console.log('The radio value is: ' + radioValue);
+    if(radioValue == "1"){
+      //Important-Urgent
+      is_important = true;
+      is_urgent = true;
+    }
+    if(radioValue == "2") {
+      //Important
+      is_important = true;
+    }
+    if(radioValue == "3") {
+      //Urgent
+      is_urgent = true;
+    }
 
     // console.log('The task is: ' + name);
     // console.log('The task due date is: ' + date);
 
     // Insert a task into the collection
-    Meteor.call('tasks.insert', name, date, function(error) {
+    var s = is_urgent||is_important;
+    Meteor.call('tasks.insert', name, date, is_urgent||is_important, is_urgent, is_important, function(error) {
       if(error) {
         // Maybe some validation error here.
         // e.g. say that a task name is required.
