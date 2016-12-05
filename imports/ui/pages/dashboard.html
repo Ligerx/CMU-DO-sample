@@ -9,7 +9,8 @@
           tasks=(filteredTasks is_urgent=true is_important=true) }}
 
     {{#if tasksAreSelected }}
-      <a class="btn btn-success" href="#" role="button">{{editTasksButtonText}}</a>
+      <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a>
+      <div class="test-div">Blah!</div>
     {{else}}
       {{> newTaskModal }}
     {{/if}}

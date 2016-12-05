@@ -52,3 +52,19 @@ Template.dashboard.helpers({
   }
 
 });
+
+// This is just for testing purposes.
+// Once we figure out what component to put this code in, remove it from here.
+Template.dashboard.events({
+  'click .temporary-edit-button'() {
+    console.log('temporary-edit-button clicked');
+
+    const selectedTasks = $('.task.selected');
+
+    console.log(selectedTasks);
+    selectedTasks.each(function(index, element) {
+      console.log($(element).data('id'));
+    });
+  },
+
+});
