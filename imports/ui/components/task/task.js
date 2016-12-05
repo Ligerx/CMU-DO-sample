@@ -70,7 +70,10 @@ Template.task.events({
   'click .toggle-checked'() {
     Meteor.call('tasks.toggle_completed', this.task._id);
   },
-  'click .task-body'(event, instance) {
+
+  'click .task'(event, instance) {
+    // It seems that when you click the checkbox, that handles the event and
+    // it does not propagage to this one, which is what we wanted anyway.
     let currentlySelected = instance.state.get('taskSelected');
     instance.state.set('taskSelected', !currentlySelected);
   },
