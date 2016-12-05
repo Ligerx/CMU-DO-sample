@@ -115,3 +115,17 @@ nav a {
     background: #007299;
     box-shadow: none;
 }
+
+.hiddenRadio {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+}
