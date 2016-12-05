@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
 import { Tasks } from '../../../api/api.js';
 
 import './task.html';
@@ -58,10 +59,24 @@ Template.task.helpers({
       return "";
     }
   },
+
+  taskSelected() {
+    const instance = Template.instance();
+    return instance.state.get('taskSelected');
+  }
 });
 
 Template.task.events({
   'click .toggle-checked'() {
     Meteor.call('tasks.toggle_completed', this.task._id);
   },
+  'click .task-body'(event, instance) {
+    let currentlySelected = instance.state.get('taskSelected');
+    instance.state.set('taskSelected', !currentlySelected);
+  },
+});
+
+Template.task.onCreated(function() {
+  this.state = new ReactiveDict();
+  this.state.set('taskSelected', false);
 });
