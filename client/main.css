@@ -5,8 +5,8 @@ h1,h2,h3,h4 {
   font-family: 'Bungee', cursive;
   font-weight: 400;
 }
-h1.task-header { 
-  text-decoration:none; color:#1ca8c3; 
+h1.task-header {
+  text-decoration:none; color:#1ca8c3;
 }
 body{
   background: #343434; /* Standard syntax */
@@ -59,7 +59,7 @@ nav a {
   border-radius: 4px;
   padding: 10px 16px;
 }
-  
+
 .btn-lg {
   font-size: 18px;
   line-height: 1.33;
@@ -125,4 +125,11 @@ nav a {
     width: 50%;
     border: 3px solid green;
     padding: 10px;
+}
+
+
+
+/* Task Styles */
+.task.selected {
+  background-color: #4d4d4d;
 }
