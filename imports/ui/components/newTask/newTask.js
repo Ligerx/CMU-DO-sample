@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Tasks } from '../../../api/api.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './newTask.html';
 
@@ -10,22 +11,26 @@ Template.datepicker.rendered = function() {
   });
 };
 
-Template.newTask.rendered = function() {
-  console.log('attempting to render newTask component...');
-  $(".setPriority").popover({
-    html: true,
-    title: 'Select Priority',
-    content: function() {
-      return $("#popover-content").html();
-    }
-  });
-}
+// Template.newTask.rendered = function() {
+//   console.log('attempting to render newTask component...');
+//   $(".setPriority").popover({
+//     html: true,
+//     title: 'Select Priority',
+//     content: function() {
+//       return $("#popover-content").html();
+//     }
+//   });
+// }
 
 Template.choosePriority.helpers({
   taskCount: function() {
     //Change later
     return Tasks.find().count();
   },
+});
+
+Template.newTask.onCreated(function() {
+  this.currentPriority = new ReactiveVar( 'No Priority' );
 });
 
 Template.newTask.helpers({
@@ -45,23 +50,30 @@ Template.newTask.helpers({
 
   //   return array.join(' and ');
   // },
-    return "Still implementing."
+    return Template.instance().currentPriority.get();
   }
 });
 
 Template.newTask.events({
+
+  'click #select-priority':function(){
+    $(".priority-select").css('visibility', 'visible');
+  },
   
-  'change .prioritySelect': function(event){
+  'change .prioritySelect': function(event, template){
     console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
-        console.log('i-u');
+        template.currentPriority.set('Important');
         break;
       case '2':
-        console.log('i');
+        template.currentPriority.set('Urgent');
         break;
-      default:
-        console.log('other');
+      case '3':
+        template.currentPriority.set('Important');
+        break;
+      case '4':
+        template.currentPriority.set('Someday');
         break;
     }
   },
