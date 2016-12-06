@@ -8,6 +8,18 @@
           title="Urgent and Important Tasks"
           tasks=(filteredTasks is_urgent=true is_important=true) }}
 
+    {{> taskList
+          title="Urgent Tasks"
+          tasks=(filteredTasks is_urgent=true is_important=false) }}
+
+    {{> taskList
+          title="Important Tasks"
+          tasks=(filteredTasks is_urgent=false is_important=true) }}
+
+    {{> taskList
+          title="Someday"
+          tasks=(filteredTasks is_urgent=false is_important=false) }}
+
     {{> newTaskModal }}
 
   </div><!-- /.container -->
