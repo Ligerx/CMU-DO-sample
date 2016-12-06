@@ -1,17 +1,24 @@
 <template name="newTask">
-  <h2>New Task</h2>
+  <h2>Add Task</h2>
     <form class="new-task">
       <div class="form-group">
-      <input type="text" name="name" placeholder="Task Description" />
+      <input type="text" class="form-control form-control-taskname" name="name" placeholder="Task Description" />
       </div>
 
-        {{> datepicker}}
 
-        <a href="#" id="select-priority" class="glyphicon glyphicon-th-large setPriority">{{printPriority}}</a>
+      <div class="form-group">
+        <i class="glyphicon glyphicon-sort-by-attributes"></i>
+        <a href="#" id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
         {{> choosePriority}}
-        <br/>
-        <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
-        <input type="submit" name="save" value="Save" class="btn btn-primary save"/>
+      </div>
+      <div class = "task-submit">
+        <div class = "task-button">
+          <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
+        </div>
+      <div class = "task-button">
+        <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
+      </div>
+      </div>
 
     </form>
 </template>
@@ -20,16 +27,19 @@
   <br/>
   <div class = "priority-select">
   <label><input type = "radio" name = "priority" class = "prioritySelect" value = "1">Important-Urgent</label>
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "2">Urgent
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "3">Important
+  <input type = "radio" name = "priority" class = "prioritySelect" value = "2">Important
+  <input type = "radio" name = "priority" class = "prioritySelect" value = "3">Urgent
   <input type = "radio" name = "priority" class = "prioritySelect" value = "4">Someday
   </div>
 </template>
 
 <template name="datepicker">
   <!-- <form class="form-inline mod-field item-due"> -->
-    <div class="mod-field">
-      <span>Due date: </span><input type="text" name="date" class="datepicker" id="datepicker" />
+    <div class = "date-field">
+    <div class="form-group date-field">
+      <i class="glyphicon glyphicon-calendar"></i>
+      <input type="text" name="date" class="datepicker" id="datepicker" placeholder="No Due Date" />
+    </div>
     </div>
   <!-- </form> -->
 </template>
