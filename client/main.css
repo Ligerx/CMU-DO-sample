@@ -141,6 +141,11 @@ label {
     display: inline-block;
 }
 
+.task-item {
+  border-bottom: solid;
+  border-color: #606060;
+}
+
 .date-field {
   display: inline;
   margin-left:10%;
@@ -175,4 +180,17 @@ label {
 .task-button {
   float:right;
   margin:2%;
+}
+
+.bottomaligned {
+  position:absolute; 
+  bottom:0;  
+  margin-bottom:20%;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: radio; /* Chrome, Safari, Opera */
+    -moz-appearance: radio;    /* Firefox */
+    width:20px;
+    height:20px;
 }
