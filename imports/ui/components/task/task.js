@@ -6,10 +6,10 @@ import './task.html';
 Template.task.helpers({
 
   getStatusColor() {
-    if(!!this.task.completed_on) return '#8b8b8b';
-    else if(this.task.is_urgent&&this.task.is_important) return '#ff5b5b';
-    else if(this.task.is_urgent) return '#ffbf5b';
-    else if(this.task.is_important) return '#d3ff5b';
+    if(!!this.task.completed_on) return 'archived-task';
+    else if(this.task.is_urgent&&this.task.is_important) return 'important-urgent';
+    else if(this.task.is_urgent) return 'urgent-task';
+    else if(this.task.is_important) return 'important-task';
     else return '#fff'
   },
 

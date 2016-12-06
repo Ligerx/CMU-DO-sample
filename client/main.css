@@ -135,6 +135,7 @@ nav a {
 }
 
 .btn-block {
+  margin-top:50px;
   margin-bottom: 20px;
 }
 
@@ -200,8 +201,28 @@ label {
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: radio; /* Chrome, Safari, Opera */
-    -moz-appearance: radio;    /* Firefox */
-    width:20px;
-    height:20px;
+  -webkit-appearance: radio; /* Chrome, Safari, Opera */
+  -moz-appearance: radio;    /* Firefox */
+  width:20px;
+  height:20px;
+}
+
+.someday-task {
+  color: #fff;
+}
+
+.archived-task {
+  color: #8b8b8b;
+}
+
+.important-urgent {
+  color: #ff5b5b
+}
+
+.important-task {
+  color: #d3ff5b;
+}
+
+.urgent-task {
+  color: #ffbf5b;
 }
