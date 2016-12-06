@@ -1,11 +1,11 @@
 <template name="task">
-  <li class="{{#if task.checked}}checked{{/if}}">
+  <li class="task-item {{#if task.checked}}checked{{/if}}">
 
     <input type="checkbox" checked="{{isCompleted}}" class="toggle-checked" />
 
-    <span class="text">{{task.name}}</span>
+    <span class="text {{getStatusColor status}}">{{task.name}}</span>
 
-    <span class="text">{{date}}</span>
+    <span class="text {{getStatusColor status}}">{{date}}</span>
 
     {{! log }}
 
