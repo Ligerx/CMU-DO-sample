@@ -66,6 +66,13 @@ nav a {
   border-radius: 6px;
 }
 
+.btn-xl {
+  height: 80px;
+  font-size: 32px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #428bca;
@@ -127,6 +134,10 @@ nav a {
     padding: 10px;
 }
 
+.btn-block {
+  width: 90%;
+}
+
 .priority-select {
   visibility: hidden;
 }
@@ -184,8 +195,8 @@ label {
 
 .bottomaligned {
   position:absolute; 
-  bottom:0;  
-  margin-bottom:20%;
+  bottom:0;
+  margin-bottom:5%;
 }
 
 input[type="checkbox"] {

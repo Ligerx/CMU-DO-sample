@@ -4,6 +4,15 @@ import { Tasks } from '../../../api/api.js';
 import './task.html';
 
 Template.task.helpers({
+
+  getStatusColor() {
+    if(!!this.task.completed_on) return '#8b8b8b';
+    else if(this.task.is_urgent&&this.task.is_important) return '#ff5b5b';
+    else if(this.task.is_urgent) return '#ffbf5b';
+    else if(this.tak.is_important) return '#d3ff5b';
+    else return '#fff'
+  },
+
   date() {
     // console.log('blah');
     // console.log(this);

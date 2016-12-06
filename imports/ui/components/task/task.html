@@ -3,9 +3,9 @@
 
     <input type="checkbox" checked="{{isCompleted}}" class="toggle-checked" />
 
-    <span class="text">{{task.name}}</span>
+    <span class="text" style="color:{{getStatusColor status}}">{{task.name}}</span>
 
-    <span class="text">{{date}}</span>
+    <span class="text" style="color:{{getStatusColor status}}">{{date}}</span>
 
     {{! log }}
 
