@@ -140,3 +140,39 @@ nav a {
 label {
     display: inline-block;
 }
+
+.date-field {
+  display: inline;
+  margin-left:10%;
+}
+
+.priority-label {
+  font-family: 'Itim', cursive !important;
+  background:rgba(0,0,0,0);
+  border:none;
+  color:#0099cc;
+  font-size: 24px;
+}
+
+.datepicker {
+  font-family: 'Itim', cursive !important;
+  border: none;
+  color:#0099cc;
+  font-size: 24px;
+}
+
+.form-control-taskname {
+  width: 75%;
+  height: 50px;
+  font-size: 24px;
+}
+
+.task-submit {
+  width:77%;
+  padding-bottom: 12%;
+}
+
+.task-button {
+  float:right;
+  margin:2%;
+}

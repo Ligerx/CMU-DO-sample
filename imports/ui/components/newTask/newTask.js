@@ -55,6 +55,9 @@ Template.newTask.helpers({
 });
 
 Template.newTask.events({
+  'click #submit-close':function(){
+  $('#newTaskModal').modal('hide');
+  },
 
   'click #select-priority':function(){
     $(".priority-select").css('visibility', 'visible');
