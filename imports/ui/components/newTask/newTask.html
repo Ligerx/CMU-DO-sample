@@ -6,9 +6,9 @@
       </div>
 
         {{> datepicker}}
-        {{> choosePriority}}
-        <span>{{printPriority}}</span>
 
+        <a href="#" id="select-priority" class="glyphicon glyphicon-th-large setPriority">{{printPriority}}</a>
+        {{> choosePriority}}
         <br/>
         <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
         <input type="submit" name="save" value="Save" class="btn btn-primary save"/>
@@ -17,12 +17,13 @@
 </template>
 
 <template name="choosePriority">
-  {{taskCount}}
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "1">Important-Urgent
+  <br/>
+  <div class = "priority-select">
+  <label><input type = "radio" name = "priority" class = "prioritySelect" value = "1">Important-Urgent</label>
   <input type = "radio" name = "priority" class = "prioritySelect" value = "2">Urgent
   <input type = "radio" name = "priority" class = "prioritySelect" value = "3">Important
   <input type = "radio" name = "priority" class = "prioritySelect" value = "4">Someday
-
+  </div>
 </template>
 
 <template name="datepicker">
