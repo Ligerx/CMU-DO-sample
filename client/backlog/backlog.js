@@ -3,14 +3,6 @@ import { Template } from 'meteor/templating';
 import { Tasks } from './tasks.js';
 import './backlog.html';
 import './task.html';
- 
-Template.body.helpers({
-  tasks: [
-    { text: 'This is task 1' },
-    { text: 'This is task 2' },
-    { text: 'This is task 3' },
-  ],
-});
 
 Template.body.events({
   'submit .new-task'(event) {
@@ -20,7 +12,7 @@ Template.body.events({
     // Get value from form element
     const target = event.target;
     const text = target.text.value;
- 
+ 	console.log('INTSERT!');
     // Insert a task into the collection
     Tasks.insert({
       text,
