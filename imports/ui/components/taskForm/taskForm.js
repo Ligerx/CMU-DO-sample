@@ -20,37 +20,30 @@ Template.choosePriority.helpers({
 
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
-
-  // if(this.selectedTasks && this.selectedTasks.fetch().length == 1) {
-  //   this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
-  // }
-
-  // if(this.selectedTasks) {
-  //   this.selectedTasks.forEach(function(task) {
-  //     console.log(task._id);
-  //   });
-  // }
-});
-
-Template.taskForm.onRendered(function() {
-  console.log("In taskForm onRendered");
-  console.log(this.selectedTasks);
-
-  if(this.selectedTasks && this.selectedTasks.fetch().length == 1) {
-    this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
-  }
 });
 
 Template.taskForm.helpers({
   printPriority() {
     return Template.instance().currentPriority.get();
+  },
+
+  name() {
+    const instance = Template.instance();
+    const selectedTasks = instance.data.selectedTasks;
+
+    if(selectedTasks && selectedTasks.count() == 1) {
+      return selectedTasks.fetch()[0].name;
+    }
+    else {
+      return null;
+    }
   }
 });
 
 Template.taskForm.events({
   'click .submit-close'(event){
     event.stopPropagation();
-    console.log('closing modal');
+    // console.log('closing modal');
     $('.modal').modal('hide');
   },
 
@@ -62,7 +55,7 @@ Template.taskForm.events({
   'change .prioritySelect'(event, template){
     event.stopPropagation();
 
-    console.log(event.currentTarget.value);
+    // console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
         template.currentPriority.set('Important');
@@ -93,7 +86,7 @@ Template.taskForm.events({
     const date = target.date.value;
     const radioValue = event.target.priority.value;
 
-    console.log('The radio value is: ' + radioValue);
+    // console.log('The radio value is: ' + radioValue);
     if(radioValue == "1"){
       is_important = true;
       is_urgent = true;

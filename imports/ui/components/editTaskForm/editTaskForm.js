@@ -6,9 +6,15 @@ import '../taskForm/taskForm.js';
 
 Template.editTaskForm.helpers({
   handleSubmit() {
-    console.log(this.selectedTasks.fetch());
+    // let instance = Template.instance();
+    // let self = this;
 
     return function(name, date, is_sorted, is_urgent, is_important, successCallback) {
+      // console.log(instance);
+      // console.log(instance.selectedTasks.fetch());
+      // console.log('self is:');
+      // console.log(self);
+
       console.log('editTaskForm: handling submit!');
 
       const taskIds = this.selectedTasks.map(function(task) {
@@ -21,11 +27,10 @@ Template.editTaskForm.helpers({
           // e.g. say that a task name is required.
         }
         else {
+          console.log('Task Edited.');
           successCallback();
         }
       });
-
-      console.log('Task Edited.');
     }
   }
 });
