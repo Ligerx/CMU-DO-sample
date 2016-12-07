@@ -68,11 +68,6 @@ Template.task.helpers({
       return "";
     }
   },
-
-  taskSelected() {
-    const instance = Template.instance();
-    return instance.state.get('taskSelected');
-  }
 });
 
 Template.task.events({
@@ -86,9 +81,12 @@ Template.task.events({
   'click .task'(event, instance) {
     let currentlySelected = instance.state.get('taskSelected');
 
+    // Due to problems with the timing of the class being applied via a helper
+    // use jQuery to manually do it here and hope it works...
+    instance.$('.task').toggleClass('selected');
+
     updateNumTaskSelected(!currentlySelected);
     instance.state.set('taskSelected', !currentlySelected);
-
   },
 });
 

@@ -32,14 +32,12 @@ Template.taskFormModal.helpers({
     //        session ends up updating BEFORE the .selected class gets applied to the DOM.
     //        You would be searching for something that hasn't been applied yet.
     //        By waiting a little bit before searching the dom, it seems to fix the problem.
-    Meteor.setTimeout(function() {
-      const selectedTasks = $('.task.selected');
-      const selectedIDs = selectedTasks.map(function(index, element) {
-        return $(element).data('id');
-      }).toArray();
+    const selectedTasks = $('.task.selected');
+    const selectedIDs = selectedTasks.map(function(index, element) {
+      return $(element).data('id');
+    }).toArray();
 
-      return Tasks.find({"_id": { "$in": selectedIDs }});
-    }, 10);
+    return Tasks.find({"_id": { "$in": selectedIDs }});
   },
 
 });

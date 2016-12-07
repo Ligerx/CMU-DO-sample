@@ -21,15 +21,24 @@ Template.choosePriority.helpers({
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
 
-  if(this.selectedTasks && this.selectedTasks.length == 1) {
-    this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
-  }
+  // if(this.selectedTasks && this.selectedTasks.fetch().length == 1) {
+  //   this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
+  // }
 
   // if(this.selectedTasks) {
   //   this.selectedTasks.forEach(function(task) {
   //     console.log(task._id);
   //   });
   // }
+});
+
+Template.taskForm.onRendered(function() {
+  console.log("In taskForm onRendered");
+  console.log(this.selectedTasks);
+
+  if(this.selectedTasks && this.selectedTasks.fetch().length == 1) {
+    this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
+  }
 });
 
 Template.taskForm.helpers({
@@ -39,15 +48,20 @@ Template.taskForm.helpers({
 });
 
 Template.taskForm.events({
-  'click #submit-close'(){
-  $('#newTaskModal').modal('hide');
+  'click .submit-close'(event){
+    event.stopPropagation();
+    console.log('closing modal');
+    $('.modal').modal('hide');
   },
 
-  'click #select-priority'(){
+  'click #select-priority'(event){
+    event.stopPropagation();
     $(".priority-select").css('visibility', 'visible');
   },
 
   'change .prioritySelect'(event, template){
+    event.stopPropagation();
+
     console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
@@ -101,6 +115,20 @@ Template.taskForm.events({
       // On success, clear form
       target.name.value = '';
       target.date.value = '';
+
+      // TODO: 'clear' the priority selection
+
+      // Remove all task selection if applicable
+      $('.task').removeClass('selected');
+
+      // Clear the session counter
+      // FIXME: I was running into problems where doing this would make the modal
+      // backdrop not disappear. I'm guessing it is because something is being removed
+      // from the dom before everything could be run. It probably has to do with the animation time.
+      // So use a setTimeout here to attempt to fix it.
+      Meteor.setTimeout(function() {
+        Session.set('numTasksSelected', 0);
+      }, 1000);
     });
   },
 

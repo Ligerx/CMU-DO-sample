@@ -6,6 +6,8 @@ import '../taskForm/taskForm.js';
 
 Template.editTaskForm.helpers({
   handleSubmit() {
+    console.log(this.selectedTasks.fetch());
+
     return function(name, date, is_sorted, is_urgent, is_important, successCallback) {
       console.log('editTaskForm: handling submit!');
 
@@ -23,7 +25,7 @@ Template.editTaskForm.helpers({
         }
       });
 
-      console.log('Num tasks is now: ' + Tasks.find().count());
+      console.log('Task Edited.');
     }
   }
 });
