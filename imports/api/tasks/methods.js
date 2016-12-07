@@ -24,8 +24,24 @@ Meteor.methods({
     });
   },
 
-  'tasks.update' (taskId, completed_on) {
-    // TODO
+  'tasks.massUpdate' (taskIds, name, due_on = null, is_sorted = true, is_urgent = false, is_important = false) {
+    if (! this.userId) { throw new Meteor.Error('not-authorized'); }
+    if (! name) { throw new Meteor.Error('task-name-blank'); }
+
+    Tasks.update({
+      "_id": { "$in": taskIds }
+    },
+    { '$set': {
+        name,
+        due_on,
+        is_sorted,
+        is_urgent,
+        is_important,
+      }
+    },
+    {
+      'multi': true
+    });
    },
 
   'tasks.toggle_completed' (taskId) {

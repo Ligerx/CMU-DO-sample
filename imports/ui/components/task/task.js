@@ -1,9 +1,19 @@
 import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
 import { Tasks } from '../../../api/api.js';
 
 import './task.html';
 
 Template.task.helpers({
+
+  getStatusColor() {
+    if(!!this.task.completed_on) return 'archived-task';
+    else if(this.task.is_urgent&&this.task.is_important) return 'important-urgent';
+    else if(this.task.is_urgent) return 'urgent-task';
+    else if(this.task.is_important) return 'important-task';
+    else return '#fff'
+  },
+
   date() {
     // console.log('blah');
     // console.log(this);
@@ -61,7 +71,40 @@ Template.task.helpers({
 });
 
 Template.task.events({
-  'click .toggle-checked'() {
+  'click .toggle-checked'(e) {
     Meteor.call('tasks.toggle_completed', this.task._id);
+
+    // Prevent the other click event from firing
+    e.stopPropagation();
+  },
+
+  'click .task'(event, instance) {
+    let currentlySelected = instance.state.get('taskSelected');
+
+    // Due to problems with the timing of the class being applied via a helper
+    // use jQuery to manually do it here and hope it works...
+    instance.$('.task').toggleClass('selected');
+
+    updateNumTaskSelected(!currentlySelected);
+    instance.state.set('taskSelected', !currentlySelected);
   },
 });
+
+Template.task.onCreated(function() {
+  this.state = new ReactiveDict();
+  this.state.set('taskSelected', false);
+});
+
+// Update the session to count the number of tasks selected.
+function updateNumTaskSelected(shouldIncrement) {
+  const numTasksSelected = Session.get('numTasksSelected') || 0;
+
+  if(shouldIncrement) {
+    Session.set('numTasksSelected', numTasksSelected + 1);
+  }
+  else {
+    Session.set('numTasksSelected', numTasksSelected - 1);
+  }
+
+  console.log('Number of tasks selected: ' + Session.get('numTasksSelected'));
+}
