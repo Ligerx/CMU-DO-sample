@@ -32,7 +32,7 @@ FlowRouter.route('/home', {
 
 FlowRouter.route('/', {
   triggersEnter: [function(context, redirect) {
-    redirect('/dashboard');
+    redirect('/home');
   }]
 });
 
