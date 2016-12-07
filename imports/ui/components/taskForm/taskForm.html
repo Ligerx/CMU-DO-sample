@@ -2,7 +2,7 @@
   <h2>{{title}}</h2>
     <form class="task-form">
       <div class="form-group">
-      <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" />
+      <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value="{{name}}" />
       </div>
 
 
@@ -11,14 +11,23 @@
         <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
         {{> choosePriority}}
       </div>
-      <div class = "task-submit">
-        <div class = "task-button">
-          <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
+
+      {{#if isEditing }}
+        <div class = "task-submit">
+          <div class = "task-button">
+            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
+          </div>
         </div>
-      <div class = "task-button">
-        <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
-      </div>
-      </div>
+      {{else}}
+        <div class = "task-submit">
+          <div class = "task-button">
+            <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
+          </div>
+          <div class = "task-button">
+            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
+          </div>
+        </div>
+      {{/if}}
 
     </form>
 </template>
