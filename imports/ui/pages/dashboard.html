@@ -20,7 +20,13 @@
           title="Someday"
           tasks=(filteredTasks is_urgent=false is_important=false) }}
 
-    {{> newTaskModal }}
+
+    {{#if tasksAreSelected }}
+      <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a>
+      <div class="test-div">Blah!</div>
+    {{else}}
+      {{> newTaskModal }}
+    {{/if}}
 
   </div><!-- /.container -->
 </template>

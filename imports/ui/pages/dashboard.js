@@ -35,4 +35,41 @@ Template.dashboard.helpers({
     });
   },
 
+  tasksAreSelected() {
+    const numTasksSelected = Session.get('numTasksSelected') || 0;
+    return numTasksSelected > 0 ? true : false;
+  },
+
+  editTasksButtonText() {
+    const numTasksSelected = Session.get('numTasksSelected') || 0;
+
+    if(numTasksSelected === 1) {
+      return 'Edit Task';
+    }
+    else {
+      return 'Edit ' + numTasksSelected + ' Tasks'
+    }
+  }
+
+});
+
+// This is just for testing purposes.
+// Once we figure out what component to put this code in, remove it from here.
+Template.dashboard.events({
+  'click .temporary-edit-button'() {
+    console.log('temporary-edit-button clicked');
+
+    const selectedTasks = $('.task.selected');
+
+    const selectedIDs = selectedTasks.map(function(index, element) {
+      return $(element).data('id');
+    }).toArray();
+
+    const tasks = Tasks.find({"_id": { "$in": selectedIDs }}).fetch();
+
+    tasks.forEach(function(task) {
+      console.log(task);
+    });
+  },
+
 });

@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { ReactiveDict } from 'meteor/reactive-dict';
 import { Tasks } from '../../../api/api.js';
 
 import './task.html';
@@ -67,10 +68,44 @@ Template.task.helpers({
       return "";
     }
   },
+
+  taskSelected() {
+    const instance = Template.instance();
+    return instance.state.get('taskSelected');
+  }
 });
 
 Template.task.events({
   'click .toggle-checked'() {
     Meteor.call('tasks.toggle_completed', this.task._id);
   },
+
+  'click .task'(event, instance) {
+    // It seems that when you click the checkbox, that handles the event and
+    // it does not propagage to this one, which is what we wanted anyway.
+    let currentlySelected = instance.state.get('taskSelected');
+
+    updateNumTaskSelected(!currentlySelected);
+    instance.state.set('taskSelected', !currentlySelected);
+
+  },
 });
+
+Template.task.onCreated(function() {
+  this.state = new ReactiveDict();
+  this.state.set('taskSelected', false);
+});
+
+// Update the session to count the number of tasks selected.
+function updateNumTaskSelected(shouldIncrement) {
+  const numTasksSelected = Session.get('numTasksSelected') || 0;
+
+  if(shouldIncrement) {
+    Session.set('numTasksSelected', numTasksSelected + 1);
+  }
+  else {
+    Session.set('numTasksSelected', numTasksSelected - 1);
+  }
+
+  console.log('Number of tasks selected: ' + Session.get('numTasksSelected'));
+}

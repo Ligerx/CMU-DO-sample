@@ -28,3 +28,9 @@ FlowRouter.route('/', {
     redirect('/dashboard');
   }]
 });
+
+// When you enter a new page, reset the number of selected tasks because
+// it's a global session variable that doesn't get reset on page change
+FlowRouter.triggers.enter([function() {
+  Session.set('numTasksSelected', 0);
+}]);
