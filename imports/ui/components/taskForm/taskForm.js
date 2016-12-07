@@ -58,13 +58,13 @@ Template.taskForm.events({
     // console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
-        template.currentPriority.set('Important');
+        template.currentPriority.set('Important and Urgent');
         break;
       case '2':
-        template.currentPriority.set('Urgent');
+        template.currentPriority.set('Important');
         break;
       case '3':
-        template.currentPriority.set('Important');
+        template.currentPriority.set('Urgent');
         break;
       case '4':
         template.currentPriority.set('Someday');
@@ -72,7 +72,7 @@ Template.taskForm.events({
     }
   },
 
-  'submit .task-form'(event) {
+  'submit .task-form'(event, template) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -93,18 +93,28 @@ Template.taskForm.events({
     }
     if(radioValue == "2") {
       is_important = true;
+      is_urgent = false;
     }
     if(radioValue == "3") {
+      is_important = false;
       is_urgent = true;
     }
     if(radioValue == "4") {
+      is_important = false;
+      is_urgent = false;
+
       is_backlog = true;
     }
 
     var is_sorted = is_urgent || is_important || is_backlog;
 
+    // console.log('before submitting to server');
+    // console.log('is_sorted: ' +is_sorted);
+    // console.log('is_urgent: ' +is_urgent);
+    // console.log('is_important: ' +is_important);
+
     // Trigger the callback to the parent template
-    this.onSubmit(name, date, is_sorted, is_urgent, is_important, function() {
+    template.data.onSubmit(name, date, is_sorted, is_urgent, is_important, function() {
       // On success, clear form
       target.name.value = '';
       target.date.value = '';

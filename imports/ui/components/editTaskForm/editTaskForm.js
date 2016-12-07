@@ -15,7 +15,10 @@ Template.editTaskForm.helpers({
       // console.log('self is:');
       // console.log(self);
 
-      console.log('editTaskForm: handling submit!');
+      // console.log('editTaskForm: handling submit!');
+      // console.log('is_sorted: ' +is_sorted);
+      // console.log('is_urgent: ' +is_urgent);
+      // console.log('is_important: ' +is_important);
 
       const taskIds = this.selectedTasks.map(function(task) {
         return task._id;

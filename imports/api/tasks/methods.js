@@ -37,6 +37,8 @@ Meteor.methods({
 
     // Remove any attributes that don't have a value
     clean(attributes);
+    console.log('attributes are ');
+    console.log(attributes);
 
     Tasks.update({ "_id": { "$in": taskIds } },
       { '$set': attributes },
@@ -67,5 +69,5 @@ Meteor.methods({
 // Use this to help remove attributes that are unwanted.
 function clean(obj) {
   Object.keys(obj).forEach((key) =>
-    (obj[key] == null || obj[key] == undefined || obj[key] == '') && delete obj[key]);
+    (obj[key] === null || obj[key] === undefined || obj[key] === '') && delete obj[key]);
 }
