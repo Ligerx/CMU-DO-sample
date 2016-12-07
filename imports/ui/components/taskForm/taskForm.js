@@ -20,6 +20,16 @@ Template.choosePriority.helpers({
 
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
+
+  if(this.selectedTasks && this.selectedTasks.length == 1) {
+    this.$('.task-name').val(this.selectedTasks.fetch()[0].name);
+  }
+
+  // if(this.selectedTasks) {
+  //   this.selectedTasks.forEach(function(task) {
+  //     console.log(task._id);
+  //   });
+  // }
 });
 
 Template.taskForm.helpers({
@@ -87,7 +97,11 @@ Template.taskForm.events({
     var is_sorted = is_urgent || is_important || is_backlog;
 
     // Trigger the callback to the parent template
-    this.onSubmit(name, date, is_sorted, is_urgent, is_important);
+    this.onSubmit(name, date, is_sorted, is_urgent, is_important, function() {
+      // On success, clear form
+      target.name.value = '';
+      target.date.value = '';
+    });
   },
 
 });

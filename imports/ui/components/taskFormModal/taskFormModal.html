@@ -2,15 +2,17 @@
 
     {{#if tasksAreSelected }}
 
-      <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a>
+      <!-- <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a> -->
+      <button class="btn btn-success btn-lg btn-block btn-xl" data-toggle="modal" data-target=".bd-example-modal-lg">
+        {{editTasksButtonText}}
+      </button>
 
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
           <div class="modal-content">
             <div class="container">
-              {{! > newTaskForm }}
-              {{! > taskForm}}
+              {{> editTaskForm selectedTasks=selectedTasks}}
             </div>
           </div>
 
@@ -29,7 +31,6 @@
           <div class="modal-content">
             <div class="container">
               {{> newTaskForm }}
-              {{! > taskForm}}
             </div>
           </div>
 

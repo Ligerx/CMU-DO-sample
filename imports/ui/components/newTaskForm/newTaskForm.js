@@ -6,7 +6,7 @@ import '../taskForm/taskForm.js';
 
 Template.newTaskForm.helpers({
   handleSubmit() {
-    return function(name, date, is_sorted, is_urgent, is_important) {
+    return function(name, date, is_sorted, is_urgent, is_important, successCallback) {
       console.log('newTaskForm: handling submit!');
 
       Meteor.call('tasks.insert', name, date, is_sorted, is_urgent, is_important, function(error) {
@@ -15,9 +15,7 @@ Template.newTaskForm.helpers({
           // e.g. say that a task name is required.
         }
         else {
-          // Clear form
-          target.name.value = '';
-          target.date.value = '';
+          successCallback();
         }
       });
 
