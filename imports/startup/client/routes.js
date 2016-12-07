@@ -6,6 +6,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/layout.js';
 import '../../ui/pages/dashboard.js';
 import '../../ui/pages/history.js';
+import '../../ui/pages/home.js';
 
 // Import to override accounts templates
 // import '../../ui/accounts/accounts-templates.js'; // TODO: set up user accounts
