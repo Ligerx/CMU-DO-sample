@@ -23,6 +23,12 @@ FlowRouter.route('/history', {
   }
 });
 
+FlowRouter.route('/home', {
+  action: function(params, queryParams) {
+    BlazeLayout.render('layout', { page: 'home' });
+  }
+});
+
 FlowRouter.route('/', {
   triggersEnter: [function(context, redirect) {
     redirect('/dashboard');
