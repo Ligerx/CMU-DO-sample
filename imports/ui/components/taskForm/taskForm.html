@@ -1,14 +1,14 @@
-<template name="newTask">
-  <h2>Add Task</h2>
-    <form class="new-task">
+<template name="taskForm">
+  <h2>{{title}}</h2>
+    <form class="task-form">
       <div class="form-group">
-      <input type="text" class="form-control form-control-taskname" name="name" placeholder="Task Description" />
+      <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" />
       </div>
 
 
       <div class="form-group">
         <i class="glyphicon glyphicon-sort-by-attributes"></i>
-        <a href="#" id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
+        <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
         {{> choosePriority}}
       </div>
       <div class = "task-submit">
