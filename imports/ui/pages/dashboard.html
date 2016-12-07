@@ -8,6 +8,19 @@
           title="Urgent and Important Tasks"
           tasks=(filteredTasks is_urgent=true is_important=true) }}
 
+    {{> taskList
+          title="Urgent Tasks"
+          tasks=(filteredTasks is_urgent=true is_important=false) }}
+
+    {{> taskList
+          title="Important Tasks"
+          tasks=(filteredTasks is_urgent=false is_important=true) }}
+
+    {{> taskList
+          title="Someday"
+          tasks=(filteredTasks is_urgent=false is_important=false) }}
+
+
     {{#if tasksAreSelected }}
       <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a>
       <div class="test-div">Blah!</div>

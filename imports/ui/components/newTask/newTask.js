@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Tasks } from '../../../api/api.js';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './newTask.html';
 
@@ -10,22 +11,26 @@ Template.datepicker.rendered = function() {
   });
 };
 
-Template.newTask.rendered = function() {
-  console.log('attempting to render newTask component...');
-  $(".setPriority").popover({
-    html: true,
-    title: 'Select Priority',
-    content: function() {
-      return $("#popover-content").html();
-    }
-  });
-}
+// Template.newTask.rendered = function() {
+//   console.log('attempting to render newTask component...');
+//   $(".setPriority").popover({
+//     html: true,
+//     title: 'Select Priority',
+//     content: function() {
+//       return $("#popover-content").html();
+//     }
+//   });
+// }
 
 Template.choosePriority.helpers({
   taskCount: function() {
     //Change later
     return Tasks.find().count();
   },
+});
+
+Template.newTask.onCreated(function() {
+  this.currentPriority = new ReactiveVar( 'No Priority' );
 });
 
 Template.newTask.helpers({
@@ -45,23 +50,33 @@ Template.newTask.helpers({
 
   //   return array.join(' and ');
   // },
-    return "Still implementing."
+    return Template.instance().currentPriority.get();
   }
 });
 
 Template.newTask.events({
+  'click #submit-close':function(){
+  $('#newTaskModal').modal('hide');
+  },
+
+  'click #select-priority':function(){
+    $(".priority-select").css('visibility', 'visible');
+  },
   
-  'change .prioritySelect': function(event){
+  'change .prioritySelect': function(event, template){
     console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {
       case '1':
-        console.log('i-u');
+        template.currentPriority.set('Important');
         break;
       case '2':
-        console.log('i');
+        template.currentPriority.set('Urgent');
         break;
-      default:
-        console.log('other');
+      case '3':
+        template.currentPriority.set('Important');
+        break;
+      case '4':
+        template.currentPriority.set('Someday');
         break;
     }
   },
@@ -78,6 +93,7 @@ Template.newTask.events({
     // console.log(target);
     var is_urgent = false;
     var is_important = false;
+    var is_backlog = false;
     const name = target.name.value;
     const date = target.date.value; // not sure if I need to pass a string or a Date object?
     const radioValue = event.target.priority.value;
@@ -96,13 +112,17 @@ Template.newTask.events({
       //Urgent
       is_urgent = true;
     }
+    if(radioValue == "4") {
+      //Urgent
+      is_backlog = true;
+    }
 
     // console.log('The task is: ' + name);
     // console.log('The task due date is: ' + date);
 
     // Insert a task into the collection
-    var s = is_urgent||is_important;
-    Meteor.call('tasks.insert', name, date, is_urgent||is_important, is_urgent, is_important, function(error) {
+    var s = is_urgent||is_important||is_backlog;
+    Meteor.call('tasks.insert', name, date, s, is_urgent, is_important, function(error) {
       if(error) {
         // Maybe some validation error here.
         // e.g. say that a task name is required.

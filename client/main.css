@@ -66,6 +66,13 @@ nav a {
   border-radius: 6px;
 }
 
+.btn-xl {
+  height: 80px;
+  font-size: 32px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #428bca;
@@ -129,7 +136,107 @@ nav a {
 
 
 
+
 /* Task Styles */
 .task.selected {
   background-color: #4d4d4d;
+}
+
+.btn-block {
+  margin-top:50px;
+  margin-bottom: 20px;
+}
+
+.priority-select {
+  visibility: hidden;
+}
+
+[type="radio"] {
+  width:20px;
+  height:20px;
+  display: inline-block;
+  margin: 0 auto;
+}
+label {
+    display: inline-block;
+}
+
+.task {
+  border-bottom: solid;
+  border-color: #606060;
+}
+
+.date-field {
+  display: inline;
+  margin-left:10%;
+}
+
+.priority-label {
+  font-family: 'Itim', cursive !important;
+  background:rgba(0,0,0,0);
+  border:none;
+  color:#0099cc;
+  font-size: 24px;
+}
+
+.datepicker {
+  font-family: 'Itim', cursive !important;
+  border: none;
+  color:#0099cc;
+  font-size: 24px;
+}
+
+.form-control-taskname {
+  width: 75%;
+  height: 50px;
+  font-size: 24px;
+}
+
+.task-submit {
+  width:77%;
+  padding-bottom: 12%;
+}
+
+.task-button {
+  float:right;
+  margin:2%;
+}
+
+.bottomaligned {
+  position:absolute;
+  bottom:0;
+  margin-bottom:5%;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: radio; /* Chrome, Safari, Opera */
+  -moz-appearance: radio;    /* Firefox */
+  width:20px;
+  height:20px;
+  border-left: 5px;
+}
+
+.someday-task {
+  color: #fff;
+}
+
+.archived-task {
+  color: #8b8b8b;
+}
+
+.important-urgent {
+  color: #ff5b5b
+}
+
+.important-task {
+  color: #d3ff5b;
+}
+
+.urgent-task {
+  color: #ffbf5b;
+}
+
+.task-date {
+  font-size: 18px;
+  float: right;
 }

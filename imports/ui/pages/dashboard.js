@@ -13,7 +13,7 @@ Template.dashboard.helpers({
   allTasks() {
     return Tasks.find();
   },
-
+  
   filteredTasks(kw = { hash: {} }) {
     // Use this helper to find tasks that satisfy certain params
     // e.g. to find only important tasks, you could use {{ #each singleTask in (test is_important=true) }}
