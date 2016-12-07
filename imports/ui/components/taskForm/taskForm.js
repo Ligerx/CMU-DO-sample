@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Tasks } from '../../../api/api.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import './newTask.html';
+import './taskForm.html';
 
 Template.datepicker.rendered = function() {
   this.$('#datepicker').datepicker({
@@ -29,11 +29,11 @@ Template.choosePriority.helpers({
   },
 });
 
-Template.newTask.onCreated(function() {
+Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
 });
 
-Template.newTask.helpers({
+Template.taskForm.helpers({
   printPriority() {
   //// This is broken, similar method in task.js you might want to refer to
   //   const task = this.task;
@@ -54,7 +54,7 @@ Template.newTask.helpers({
   }
 });
 
-Template.newTask.events({
+Template.taskForm.events({
   'click #submit-close':function(){
   $('#newTaskModal').modal('hide');
   },
@@ -62,7 +62,7 @@ Template.newTask.events({
   'click #select-priority':function(){
     $(".priority-select").css('visibility', 'visible');
   },
-  
+
   'change .prioritySelect': function(event, template){
     console.log(event.currentTarget.value);
     switch(event.currentTarget.value) {

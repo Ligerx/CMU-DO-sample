@@ -1,0 +1,41 @@
+<template name="taskFormModal">
+
+    {{#if tasksAreSelected }}
+
+      <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+          <div class="modal-content">
+            <div class="container">
+              {{! > newTaskForm }}
+              {{! > taskForm}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    {{else}}
+
+      <button class="btn btn-primary btn-lg btn-block btn-xl" data-toggle="modal" data-target=".bd-example-modal-lg">
+        Add Task
+      </button>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+          <div class="modal-content">
+            <div class="container">
+              {{> newTaskForm }}
+              {{! > taskForm}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    {{/if}}
+
+</template>
