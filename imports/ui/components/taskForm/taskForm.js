@@ -79,7 +79,7 @@ Template.taskForm.events({
     }
   },
 
-  'submit .new-task'(event) {
+  'submit .task-form'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -122,14 +122,19 @@ Template.taskForm.events({
       $('.task').removeClass('selected');
 
       // Clear the session counter
-      // FIXME: I was running into problems where doing this would make the modal
-      // backdrop not disappear. I'm guessing it is because something is being removed
-      // from the dom before everything could be run. It probably has to do with the animation time.
-      // So use a setTimeout here to attempt to fix it.
-      Meteor.setTimeout(function() {
-        Session.set('numTasksSelected', 0);
-      }, 1000);
+      Session.set('numTasksSelected', 0);
     });
   },
 
+});
+
+Template.taskForm.onDestroyed(function() {
+  // The Bootstrap modal closes asynchronously.
+  // So when the template is destroyed, the modal has not completely closed.
+  // To fix this, manually destroy it.
+  const modal = this.$('.modal');
+  modal.removeClass('fade');
+  modal.modal('hide');
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
 });
