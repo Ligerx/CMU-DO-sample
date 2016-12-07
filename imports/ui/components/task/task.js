@@ -68,26 +68,25 @@ Template.task.helpers({
       return "";
     }
   },
-
-  taskSelected() {
-    const instance = Template.instance();
-    return instance.state.get('taskSelected');
-  }
 });
 
 Template.task.events({
-  'click .toggle-checked'() {
+  'click .toggle-checked'(e) {
     Meteor.call('tasks.toggle_completed', this.task._id);
+
+    // Prevent the other click event from firing
+    e.stopPropagation();
   },
 
   'click .task'(event, instance) {
-    // It seems that when you click the checkbox, that handles the event and
-    // it does not propagage to this one, which is what we wanted anyway.
     let currentlySelected = instance.state.get('taskSelected');
+
+    // Due to problems with the timing of the class being applied via a helper
+    // use jQuery to manually do it here and hope it works...
+    instance.$('.task').toggleClass('selected');
 
     updateNumTaskSelected(!currentlySelected);
     instance.state.set('taskSelected', !currentlySelected);
-
   },
 });
 
