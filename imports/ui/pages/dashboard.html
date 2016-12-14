@@ -1,19 +1,19 @@
 <template name="dashboard">
   <div class="container">
     {{> taskList
-          title="Unsorted Tasks"
+          title="Unsorted"
           tasks=(filteredTasks is_sorted=false) }}
 
     {{> taskList
-          title="Urgent and Important Tasks"
+          title="Urgent and Important"
           tasks=(filteredTasks is_urgent=true is_important=true) }}
 
     {{> taskList
-          title="Urgent Tasks"
+          title="Urgent"
           tasks=(filteredTasks is_urgent=true is_important=false) }}
 
     {{> taskList
-          title="Important Tasks"
+          title="Important"
           tasks=(filteredTasks is_urgent=false is_important=true) }}
 
     {{> taskList
