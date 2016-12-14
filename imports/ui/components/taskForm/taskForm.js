@@ -11,12 +11,12 @@ Template.datepicker.rendered = function() {
   });
 };
 
-Template.choosePriority.helpers({
-  taskCount: function() {
-    //Change later
-    return Tasks.find().count();
-  },
-});
+// Template.choosePriority.helpers({
+//   taskCount: function() {
+//     //Change later
+//     return Tasks.find().count();
+//   },
+// });
 
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
@@ -70,6 +70,9 @@ Template.taskForm.events({
         template.currentPriority.set('Someday');
         break;
     }
+
+    hidePrioritySelect(template);
+    deselectPrioritySelect(template);
   },
 
   'submit .task-form'(event, template) {
@@ -119,7 +122,10 @@ Template.taskForm.events({
       target.name.value = '';
       target.date.value = '';
 
-      // TODO: 'clear' the priority selection
+      // Clear the priority selection
+      hidePrioritySelect(template);
+      deselectPrioritySelect(template);
+      resetPriorityState(template);
 
       // Remove all task selection if applicable
       $('.task').removeClass('selected');
@@ -141,3 +147,22 @@ Template.taskForm.onDestroyed(function() {
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
 });
+
+
+
+function hidePrioritySelect(template) {
+  let prioritySelect = template.$(".priority-select");
+  prioritySelect.css('visibility', 'hidden');
+
+}
+
+function deselectPrioritySelect(template) {
+  let prioritySelect = template.$(".priority-select");
+  prioritySelect.children('input[type="radio"]').each(function(index, element) {
+    $(element).prop('checked', false);
+  });
+}
+
+function resetPriorityState(template) {
+  template.currentPriority.set('No Priority');
+}
