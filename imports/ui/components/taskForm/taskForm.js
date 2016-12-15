@@ -13,19 +13,24 @@ Template.datepicker.rendered = function() {
   });
 
   // Set a default date if given one
-  if(this.data.date) {
-    datepicker.datepicker("update", this.data.date);
-  }
+  // if(this.data.date) {
+  //   datepicker.datepicker("update", this.data.date);
+  // }
 };
 
-Template.datepicker.helpers({
-  defaultDate() {
-    console.log("Inside defaultDate");
-    const instance = Template.instance();
-    if(instance.data.date) {
-      datepicker.datepicker("update", instance.data.date);
+Template.datepicker.onRendered(function() {
+  this.autorun(function() {
+    const datepicker = Template.instance().$(".datepicker");
+    const date = Template.currentData().date;
+
+    console.log('updating date picker to date: ' + date);
+    if(date) {
+      datepicker.datepicker("update", date);
     }
-  },
+    else {
+      datepicker.val('').datepicker("update");
+    }
+  });
 });
 
 // Template.choosePriority.helpers({
@@ -85,15 +90,20 @@ Template.taskForm.helpers({
     if(!selectedTasks) { return null; }
 
     const dates = selectedTasks.fetch().map(function(task) {
-      // return task.due_on;
-      const dueOn = task.due_on;
-      return dueOn ? dueOn.getTime() : null;
+      return task.due_on;
     });
 
-    if(arraySame(dates)) {
+    const datesAsNumbers = dates.map(function(date) {
+      return date ? date.getTime() : null;
+    });
+
+    console.log(dates);
+    if(arraySame(datesAsNumbers)) {
+      console.log('Dates are the same: ' + dates[0]);
       return dates[0];
     }
     else {
+      console.log('Dates are not the same, passing in null');
       return null;
     }
   },
