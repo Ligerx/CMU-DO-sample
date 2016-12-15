@@ -1,6 +1,6 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import {DocHead} from 'meteor/kadira:dochead';
+import { DocHead } from 'meteor/kadira:dochead';
 // import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 // Import to load these templates
@@ -21,19 +21,22 @@ DocHead.addMeta(metaInfo);
 FlowRouter.route('/dashboard', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'dashboard' });
-  }
+  },
+  name: 'dashboard',
 });
 
 FlowRouter.route('/history', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'history' });
-  }
+  },
+  name: 'history',
 });
 
 FlowRouter.route('/home', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'home' });
-  }
+  },
+  name: 'home',
 });
 
 FlowRouter.route('/', {
@@ -47,3 +50,27 @@ FlowRouter.route('/', {
 FlowRouter.triggers.enter([function() {
   Session.set('numTasksSelected', 0);
 }]);
+
+// Redirect if logged in
+FlowRouter.triggers.enter([function(context, redirect) {
+  if(Meteor.loggingIn() || Meteor.userId()) {
+    redirect('/dashboard');
+  }
+}], { except: ["dashboard", "history"] });
+
+// Redirect if not logged in
+FlowRouter.triggers.enter([function(context, redirect) {
+  if(!Meteor.userId()) {
+    redirect('/');
+  }
+}], { only: ["dashboard", "history"] });
+
+Accounts.onLogout(function() {
+  $('.collapse').collapse('hide');
+  FlowRouter.go("/");
+});
+
+Accounts.onLogin(function() {
+  $('.collapse').collapse('hide');
+  FlowRouter.go("/dashboard");
+});
