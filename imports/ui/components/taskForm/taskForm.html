@@ -1,5 +1,5 @@
 <template name="taskForm">
-  <h2>{{title}}</h2>
+  <h2 id = "text">{{title}}</h2>
     <form class="task-form">
       <div class="form-group">
       <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value="{{name}}" />
@@ -45,7 +45,7 @@
 <template name="datepicker">
   <!-- <form class="form-inline mod-field item-due"> -->
     <div class = "date-field">
-    <div class="form-group date-field">
+    <div id = "date" class="form-group date-field">
       <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" name="date" class="datepicker" id="datepicker" placeholder="No Due Date" />
     </div>

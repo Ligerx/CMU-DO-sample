@@ -53,11 +53,50 @@ Template.dashboard.rendered = function(){
       target: "someday",
       placement: "bottom"
     },
-    ]
+    {
+      title: "Getting Started with CMU-DO",
+      content: "Now lets see how you can add tasks",
+      target: "modal-button",
+      placement: "top",
+      onNext: ["showModal"],
+    },
+    {
+      title: "Getting Started with CMU-DO",
+      content: "To create a task, first write the task name",
+      target: "text",
+      placement: "bottom",
+      // onNext: ["showModal"],
+    },
+    {
+      title: "Getting Started with CMU-DO",
+      content: "Then categorize the task by importance and category",
+      target: "select-priority",
+      placement: "bottom",
+      // onNext: ["showModal"],
+    },
+    {
+      title: "Getting Started with CMU-DO",
+      content: "Select the date when the task needs to be completed by",
+      target: "date",
+      placement: "bottom",
+      onNext: ["closeModal"],
+    },
+    {
+      title: "Getting Started with CMU-DO",
+      content: "Now you're all set to start using CMU-DO",
+      target: "start",
+      placement: "bottom",
+    },
+  ]
   };
-// Start the tour!
-hopscotch.startTour(tour);
-
+  // Start the tour!
+  hopscotch.registerHelper('showModal', function(){
+    $('.modal').modal('show');
+  });
+  hopscotch.registerHelper('closeModal', function(){
+    $('.modal').modal('hide');
+  });
+  hopscotch.startTour(tour);
 }
 
 Template.dashboard.helpers({
