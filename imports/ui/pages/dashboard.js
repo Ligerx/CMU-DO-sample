@@ -9,6 +9,7 @@ import '../components/taskFormModal/taskFormModal.js';
 
 Template.dashboard.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tasks');
+  Meteor.subscribe("userData"); // subscribe to additional user fields
 });
 
 // Define the tour!
@@ -97,7 +98,15 @@ Template.dashboard.rendered = function(){
   hopscotch.registerHelper('closeModal', function(){
     $('.modal').modal('hide');
   });
-  hopscotch.startTour(tour);
+
+  if(Meteor.user() && !Meteor.user().completedOnboarding) {
+    hopscotch.startTour(tour);
+
+    // TODO: this listener is never destroyed
+    hopscotch.listen('end', () => {
+      Meteor.call('users.completeOnboarding', Meteor.userId());
+    });
+  }
 }
 
 Template.dashboard.helpers({
