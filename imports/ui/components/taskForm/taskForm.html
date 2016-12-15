@@ -1,34 +1,37 @@
 <template name="taskForm">
   <h2>{{title}}</h2>
     <form class="task-form">
-      <div class="form-group">
-      <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value="{{name}}" />
-      </div>
 
-
-      <div class="form-group">
-        <i class="glyphicon glyphicon-sort-by-attributes"></i>
-        <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
-        {{> choosePriority}}
-      </div>
-
-      {{#if isEditing }}
-        <div class = "task-submit">
-          <div class = "task-button">
-            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+          <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value="{{name}}" />
           </div>
         </div>
-      {{else}}
-        <div class = "task-submit">
-          <div class = "task-button">
-            <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
-          </div>
-          <div class = "task-button">
-            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
-          </div>
-        </div>
-      {{/if}}
+      </div>
 
+      <div class="row">
+        <div class="col-xs-7">
+          <i class="glyphicon glyphicon-sort-by-attributes"></i>
+          <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>
+        </div>
+        <div class="col-xs-5">
+        {{> datepicker}}
+        </div>
+      </div>
+
+      {{> choosePriority}}
+
+      <div class="row">
+        <div class="col-sm-9 col-right">
+          {{#if isEditing }}
+            <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
+          {{else}}
+            <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn task-form-btn btn-secondary save-and-add-more"/>
+            <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
+          {{/if}}
+        </div>
+      </div>
     </form>
 </template>
 
