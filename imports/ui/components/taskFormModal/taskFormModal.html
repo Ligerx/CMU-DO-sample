@@ -1,8 +1,6 @@
 <template name="taskFormModal">
 
     {{#if tasksAreSelected }}
-
-      <!-- <a class="btn btn-success temporary-edit-button" role="button">{{editTasksButtonText}}</a> -->
       <button class="btn btn-success btn-lg btn-block btn-xl" data-toggle="modal" data-target=".bd-example-modal-lg">
         {{editTasksButtonText}}
       </button>
@@ -18,6 +16,10 @@
 
         </div>
       </div>
+
+      {{#if canChunkTask}}
+        {{> chunkingModal selectedTasks=selectedTasks}}
+      {{/if}}
 
     {{else}}
 

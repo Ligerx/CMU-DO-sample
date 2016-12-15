@@ -24,24 +24,25 @@ Meteor.methods({
     });
   },
 
-  'tasks.massUpdate' (taskIds, name, due_on = null, is_sorted = true, is_urgent = false, is_important = false) {
+  'tasks.massUpdate' (taskIds, name, due_on, is_sorted, is_urgent, is_important) {
     if (! this.userId) { throw new Meteor.Error('not-authorized'); }
-    if (! name) { throw new Meteor.Error('task-name-blank'); }
 
-    Tasks.update({
-      "_id": { "$in": taskIds }
-    },
-    { '$set': {
-        name,
-        due_on,
-        is_sorted,
-        is_urgent,
-        is_important,
-      }
-    },
-    {
-      'multi': true
-    });
+    let attributes = {
+      name,
+      due_on,
+      is_sorted,
+      is_urgent,
+      is_important,
+    };
+
+    // Remove any attributes that don't have a value
+    clean(attributes);
+    console.log('attributes are ');
+    console.log(attributes);
+
+    Tasks.update({ "_id": { "$in": taskIds } },
+      { '$set': attributes },
+      { 'multi': true });
    },
 
   'tasks.toggle_completed' (taskId) {
@@ -59,7 +60,32 @@ Meteor.methods({
     Tasks.update({ _id: taskId }, { $set: { completed_on: newCompletedOn } });
   },
 
+  'tasks.massInsert' (taskNames) {
+    // Make sure the user is logged in before inserting a task
+    if (! this.userId) { throw new Meteor.Error('not-authorized'); }
+    if (! taskNames) { throw new Meteor.Error('task-names-blank'); }
+
+    const cleanedNames = taskNames.filter(function(taskName) {
+      return taskName != undefined && taskName != null && taskName != '';
+    });
+
+    cleanedNames.forEach(function(name) {
+      Tasks.insert({
+        user_id: this.userId,
+        created_on: new Date(),
+        name,
+      });
+    });
+  },
+
   // Link to the boiler plate code from the tutorial if you wanna copy-pasta some stuff:
   // https://github.com/meteor/simple-todos/blob/master/imports/api/tasks.js
 
 });
+
+
+// Use this to help remove attributes that are unwanted.
+function clean(obj) {
+  Object.keys(obj).forEach((key) =>
+    (obj[key] === null || obj[key] === undefined || obj[key] === '') && delete obj[key]);
+}

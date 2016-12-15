@@ -1,5 +1,6 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import {DocHead} from 'meteor/kadira:dochead';
 // import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 // Import to load these templates
@@ -10,6 +11,11 @@ import '../../ui/pages/home.js';
 
 // Import to override accounts templates
 // import '../../ui/accounts/accounts-templates.js'; // TODO: set up user accounts
+
+
+let metaInfo = {name: 'viewport', content: 'width=device-width, initial-scale=1'};
+DocHead.setTitle("CMU-DO");
+DocHead.addMeta(metaInfo);
 
 // Below here are the route definitions
 FlowRouter.route('/dashboard', {

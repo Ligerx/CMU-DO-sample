@@ -71,11 +71,18 @@ Template.task.helpers({
 });
 
 Template.task.events({
-  'click .toggle-checked'(e) {
-    Meteor.call('tasks.toggle_completed', this.task._id);
-
+  'click .toggle-checked'(e, instance) {
     // Prevent the other click event from firing
     e.stopPropagation();
+
+    // Prevent completing a task if it is selected
+    if(instance.state.get('taskSelected')) {
+      e.preventDefault();
+      return;
+    }
+
+    Meteor.call('tasks.toggle_completed', this.task._id);
+
   },
 
   'click .task'(event, instance) {
