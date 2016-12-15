@@ -23,26 +23,3 @@ Template.newTaskForm.helpers({
     }
   }
 });
-
-Template.chunking.events({
-  'click .add-chunk': function(){
-    console.log("clicking works");
-    var div = "<input type='text' class='task-chunk-form form-control' name='name' placeholder='What next?'' />";
-    $( ".task-chunk" ).append(div);
-  },
-
-  'submit .chunking-form'(event, template) {
-    event.preventDefault();
-    console.log("attempting submission...");
-
-    var elem = document.getElementById('chunking-form').elements;
-    var array = [];
-
-    for(var i = 0; i < elem.length; i++)
-        {
-          console.log(elem[i].value);
-        } 
-
-  },
-
-})

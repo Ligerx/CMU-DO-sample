@@ -69,7 +69,7 @@ Meteor.methods({
       return taskName != undefined && taskName != null && taskName != '';
     });
 
-    cleanedNames.forEach(function(name) {
+    cleanedNames.forEach((name) => {
       Tasks.insert({
         user_id: this.userId,
         created_on: new Date(),
