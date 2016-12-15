@@ -1,3 +1,19 @@
 <template name="newTaskForm">
   {{> taskForm title="Add Task" onSubmit=handleSubmit }}
+  {{> chunking}}
+</template>
+
+<template name="chunking">
+	<form class="chunking-form" id = "chunking-form">
+		<div class = "task-chunk">
+			{{> chunkForm}}
+		</div>
+		<button type="button" class="btn btn-outline-primary add-chunk">Add Chunk</button>
+
+		<input type="submit" name="save" value="Save" class="btn btn-primary"/>
+	</form>
+</template>
+
+<template name="chunkForm">
+	<input type="text" class="task-chunk-form form-control" name="name" placeholder="What's the first step to completing this task?" />
 </template>
