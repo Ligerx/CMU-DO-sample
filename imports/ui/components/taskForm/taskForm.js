@@ -11,11 +11,6 @@ Template.datepicker.rendered = function() {
     autoclose: true,
     todayHighlight: true,
   });
-
-  // Set a default date if given one
-  // if(this.data.date) {
-  //   datepicker.datepicker("update", this.data.date);
-  // }
 };
 
 Template.datepicker.onRendered(function() {
@@ -32,13 +27,6 @@ Template.datepicker.onRendered(function() {
     }
   });
 });
-
-// Template.choosePriority.helpers({
-//   taskCount: function() {
-//     //Change later
-//     return Tasks.find().count();
-//   },
-// });
 
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
