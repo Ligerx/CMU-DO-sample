@@ -170,10 +170,10 @@ Template.taskForm.events({
         template.currentPriority.set('Important and Urgent');
         break;
       case '2':
-        template.currentPriority.set('Important');
+        template.currentPriority.set('Urgent');
         break;
       case '3':
-        template.currentPriority.set('Urgent');
+        template.currentPriority.set('Important');
         break;
       case '4':
         template.currentPriority.set('Someday');
