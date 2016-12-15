@@ -5,11 +5,28 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import './taskForm.html';
 
 Template.datepicker.rendered = function() {
-  this.$('#datepicker').datepicker({
+  const datepicker = this.$('#datepicker');
+
+  datepicker.datepicker({
     autoclose: true,
     todayHighlight: true,
   });
+
+  // Set a default date if given one
+  if(this.data.date) {
+    datepicker.datepicker("update", this.data.date);
+  }
 };
+
+Template.datepicker.helpers({
+  defaultDate() {
+    console.log("Inside defaultDate");
+    const instance = Template.instance();
+    if(instance.data.date) {
+      datepicker.datepicker("update", instance.data.date);
+    }
+  },
+});
 
 // Template.choosePriority.helpers({
 //   taskCount: function() {
@@ -45,6 +62,36 @@ Template.taskForm.helpers({
 
     if (selectedTasks && selectedTasks.count() > 1) {
       return 'disabled';
+    }
+    else {
+      return null;
+    }
+  },
+
+  isEditing() {
+    const instance = Template.instance();
+    const selectedTasks = instance.data.selectedTasks;
+
+    return selectedTasks ? true : false;
+  },
+
+  priority() {
+
+  },
+
+  date() {
+    const instance = Template.instance();
+    const selectedTasks = instance.data.selectedTasks;
+    if(!selectedTasks) { return null; }
+
+    const dates = selectedTasks.fetch().map(function(task) {
+      // return task.due_on;
+      const dueOn = task.due_on;
+      return dueOn ? dueOn.getTime() : null;
+    });
+
+    if(arraySame(dates)) {
+      return dates[0];
     }
     else {
       return null;
@@ -178,4 +225,14 @@ function deselectPrioritySelect(template) {
 
 function resetPriorityState(template) {
   template.currentPriority.set('No Priority');
+}
+
+function arraySame(array) {
+  if(!array) { return false; }
+
+  const first = array[0];
+
+  return array.every(function(element) {
+    return element == first;
+  });
 }

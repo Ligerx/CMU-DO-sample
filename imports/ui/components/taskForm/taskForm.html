@@ -1,35 +1,39 @@
 <template name="taskForm">
   <h2>{{title}}</h2>
-    <form class="task-form">
-      <div class="form-group">
+  <form class="task-form">
+    <div class="form-group">
       <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value={{name}} {{nameDisabled}}/>
+    </div>
+
+    <div class="form-group">
+      <i class="glyphicon glyphicon-sort-by-attributes"></i>
+
+      <a id="select-priority" class="priority-label setPriority">
+        {{printPriority}}
+      </a>
+
+      {{> datepicker date=date}}
+      {{> choosePriority}}
+    </div>
+
+    {{#if isEditing }}
+    <div class = "task-submit">
+      <div class = "task-button">
+        <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
       </div>
-
-
-      <div class="form-group">
-        <i class="glyphicon glyphicon-sort-by-attributes"></i>
-        <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>{{> datepicker}}
-        {{> choosePriority}}
+    </div>
+    {{else}}
+    <div class = "task-submit">
+      <div class = "task-button">
+        <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
       </div>
+      <div class = "task-button">
+        <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
+      </div>
+    </div>
+    {{/if}}
 
-      {{#if isEditing }}
-        <div class = "task-submit">
-          <div class = "task-button">
-            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
-          </div>
-        </div>
-      {{else}}
-        <div class = "task-submit">
-          <div class = "task-button">
-            <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn btn-secondary save-and-add-more"/>
-          </div>
-          <div class = "task-button">
-            <input type="submit" name="save" value="Save" class="btn btn-primary save submit-close"/>
-          </div>
-        </div>
-      {{/if}}
-
-    </form>
+  </form>
 </template>
 
 <template name="choosePriority">
@@ -44,11 +48,11 @@
 
 <template name="datepicker">
   <!-- <form class="form-inline mod-field item-due"> -->
-    <div class = "date-field">
+  <div class = "date-field">
     <div class="form-group date-field">
       <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" name="date" class="datepicker" id="datepicker" placeholder="No Due Date" />
     </div>
-    </div>
+  </div>
   <!-- </form> -->
 </template>
