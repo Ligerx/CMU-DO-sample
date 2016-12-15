@@ -1,24 +1,24 @@
 <template name="taskForm">
-  <h2>{{title}}</h2>
-  <form class="task-form">
+  <h2 id = "text">{{title}}</h2>
+    <form class="task-form">
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value={{name}} {{nameDisabled}} />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value={{name}} {{nameDisabled}} />
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-7">
-        <i class="glyphicon glyphicon-sort-by-attributes"></i>
-        <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>
+      <div class="row">
+        <div class="col-xs-7">
+          <i class="glyphicon glyphicon-sort-by-attributes"></i>
+          <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>
+        </div>
+        <div class="col-xs-5">
+          {{> datepicker date=date}}
+        </div>
       </div>
-      <div class="col-xs-5">
-        {{> datepicker date=date}}
-      </div>
-    </div>
 
     {{> choosePriority}}
 
@@ -48,7 +48,7 @@
 <template name="datepicker">
   <!-- <form class="form-inline mod-field item-due"> -->
   <div class = "date-field">
-    <div class="form-group date-field">
+    <div id = "date" class="form-group date-field">
       <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" name="date" class="datepicker" id="datepicker" placeholder="No Due Date" />
     </div>
