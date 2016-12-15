@@ -87,22 +87,22 @@ Template.taskForm.events({
     var is_backlog = false;
     const name = target.name.value;
     const date = target.date.value;
-    const radioValue = event.target.priority.value;
+    const priority = template.currentPriority.get();
 
     // console.log('The radio value is: ' + radioValue);
-    if(radioValue == "1"){
+    if(priority == "Important and Urgent"){
       is_important = true;
       is_urgent = true;
     }
-    if(radioValue == "2") {
+    if(priority == "Important") {
       is_important = true;
       is_urgent = false;
     }
-    if(radioValue == "3") {
+    if(priority == "Urgent") {
       is_important = false;
       is_urgent = true;
     }
-    if(radioValue == "4") {
+    if(priority == "Someday") {
       is_important = false;
       is_urgent = false;
 
