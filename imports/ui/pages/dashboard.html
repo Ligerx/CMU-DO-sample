@@ -1,27 +1,33 @@
 <template name="dashboard">
   <div class="container">
-    {{> taskList
-          title="Unsorted"
-          tasks=(filteredTasks is_sorted=false) }}
-
+    <div id="start"></div>
+    <div id="unsorted">
+      {{> taskList
+            title="Unsorted"
+            tasks=(filteredTasks is_sorted=false) }}
+    </div>
+    <div id="urgent-and-important">
     {{> taskList
           title="Urgent and Important"
           tasks=(filteredTasks is_urgent=true is_important=true) }}
-
+    </div>
+    <div id="urgent">
     {{> taskList
           title="Urgent"
           tasks=(filteredTasks is_urgent=true is_important=false) }}
-
+    </div>
+    <div id="important">
     {{> taskList
           title="Important"
           tasks=(filteredTasks is_urgent=false is_important=true) }}
-
+    </div>
+    <div id ="someday">
     {{> taskList
           title="Someday"
           tasks=(filteredTasks is_urgent=false is_important=false) }}
-
-
-    {{> taskFormModal }}
-
+    </div>
+    <div id="modal-button">
+      {{> taskFormModal }}
+    </div>
   </div><!-- /.container -->
 </template>
