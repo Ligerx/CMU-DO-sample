@@ -65,6 +65,7 @@ Template.dashboard.rendered = function(){
       content: "To create a task, first write the task name",
       target: "text",
       placement: "bottom",
+      delay: "500",
       // onNext: ["showModal"],
     },
     {
