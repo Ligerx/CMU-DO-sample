@@ -7,7 +7,15 @@ if (Meteor.isServer) {
     return Tasks.find({ user_id: this.userId });
   });
 
-  console.log("PUBLISHING TASKS!!!");
+  // Publish additional information from the User collection
+  Meteor.publish("userData", function () {
+    if (this.userId) {
+      return Meteor.users.find({_id: this.userId},
+                               {fields: {'completedOnboarding': 1}});
+    } else {
+      this.ready();
+    }
+  });
 }
 
 export { Tasks }
