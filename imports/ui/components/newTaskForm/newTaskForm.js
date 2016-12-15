@@ -36,6 +36,8 @@ Template.chunking.events({
     console.log("attempting submission...");
 
     var elem = document.getElementById('chunking-form').elements;
+    var array = [];
+
     for(var i = 0; i < elem.length; i++)
         {
           console.log(elem[i].value);
