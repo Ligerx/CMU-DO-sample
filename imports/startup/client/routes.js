@@ -8,6 +8,8 @@ import '../../ui/layouts/layout.js';
 import '../../ui/pages/dashboard.js';
 import '../../ui/pages/history.js';
 import '../../ui/pages/home.js';
+import '../../ui/pages/login.js';
+import '../../ui/pages/register.js';
 
 // Import to override accounts templates
 // import '../../ui/accounts/accounts-templates.js'; // TODO: set up user accounts
@@ -33,6 +35,18 @@ FlowRouter.route('/history', {
 FlowRouter.route('/home', {
   action: function(params, queryParams) {
     BlazeLayout.render('layout', { page: 'home' });
+  }
+});
+
+FlowRouter.route('/login', {
+  action: function(params, queryParams) {
+    BlazeLayout.render('layout', { page: 'login' });
+  }
+});
+
+FlowRouter.route('/register', {
+  action: function(params, queryParams) {
+    BlazeLayout.render('layout', { page: 'register' });
   }
 });
 
