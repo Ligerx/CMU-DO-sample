@@ -1,3 +1,23 @@
 <template name="chunkingModal">
+  <button class="btn btn-secondary btn-lg btn-block btn-xl chunking-modal-button" data-toggle="modal" data-target=".chunking-modal">
+    Break down this task
+  </button>
 
+  <div class="modal fade bd-example-modal-lg chunking-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+      <div class="modal-content">
+        <div class="container">
+          <h2>Break a task into smaller chunks</h2>
+
+          <h3>{{taskName}}</h3>
+
+          <form class="chunking-form">
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </template>

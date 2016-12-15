@@ -4,12 +4,18 @@ import { Tasks } from '../../../api/api.js';
 import './taskFormModal.html';
 import '../newTaskForm/newTaskForm.js';
 import '../editTaskForm/editTaskForm.js';
+import '../chunkingModal/chunkingModal.js';
 
 Template.taskFormModal.helpers({
 
   tasksAreSelected() {
     const numTasksSelected = Session.get('numTasksSelected') || 0;
     return numTasksSelected > 0 ? true : false;
+  },
+
+  canChunkTask() {
+    const numTasksSelected = Session.get('numTasksSelected') || 0;
+    return numTasksSelected === 1 ? true : false;
   },
 
   editTasksButtonText() {
