@@ -1,57 +1,57 @@
 <template name="taskForm">
   <h2>{{title}}</h2>
-    <form class="task-form">
+  <form class="task-form">
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-          <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value="{{name}}" />
-          </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-taskname task-name" name="name" placeholder="Task Description" value={{name}} {{nameDisabled}} />
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-xs-7">
-          <i class="glyphicon glyphicon-sort-by-attributes"></i>
-          <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>
-        </div>
-        <div class="col-xs-5">
-        {{> datepicker}}
-        </div>
+    <div class="row">
+      <div class="col-xs-7">
+        <i class="glyphicon glyphicon-sort-by-attributes"></i>
+        <a id="select-priority" class="priority-label setPriority">{{printPriority}}</a>
       </div>
-
-      {{> choosePriority}}
-
-      <div class="row">
-        <div class="col-sm-9 col-right">
-          {{#if isEditing }}
-            <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
-          {{else}}
-            <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn task-form-btn btn-secondary save-and-add-more"/>
-            <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
-          {{/if}}
-        </div>
+      <div class="col-xs-5">
+        {{> datepicker date=date}}
       </div>
-    </form>
+    </div>
+
+    {{> choosePriority}}
+
+    <div class="row">
+      <div class="col-sm-9 col-right">
+        {{#if isEditing }}
+        <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
+        {{else}}
+        <input type="submit" name="save-and-add-more" value="Save and Add More" class="btn task-form-btn btn-secondary save-and-add-more"/>
+        <input type="submit" name="save" value="Save" class="btn task-form-btn btn-primary save submit-close"/>
+        {{/if}}
+      </div>
+    </div>
+  </form>
 </template>
 
 <template name="choosePriority">
   <br/>
   <div class = "priority-select">
-  <label><input type = "radio" name = "priority" class = "prioritySelect" value = "1">Important-Urgent</label>
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "2">Important
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "3">Urgent
-  <input type = "radio" name = "priority" class = "prioritySelect" value = "4">Someday
+    <input type = "radio" name = "priority" class = "prioritySelect" value = "1">Important-Urgent
+    <input type = "radio" name = "priority" class = "prioritySelect" value = "2">Important
+    <input type = "radio" name = "priority" class = "prioritySelect" value = "3">Urgent
+    <input type = "radio" name = "priority" class = "prioritySelect" value = "4">Someday
   </div>
 </template>
 
 <template name="datepicker">
   <!-- <form class="form-inline mod-field item-due"> -->
-    <div class = "date-field">
+  <div class = "date-field">
     <div class="form-group date-field">
       <i class="glyphicon glyphicon-calendar"></i>
       <input type="text" name="date" class="datepicker" id="datepicker" placeholder="No Due Date" />
     </div>
-    </div>
+  </div>
   <!-- </form> -->
 </template>
