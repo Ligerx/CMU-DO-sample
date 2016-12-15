@@ -18,7 +18,7 @@ Template.datepicker.onRendered(function() {
     const datepicker = Template.instance().$(".datepicker");
     const date = Template.currentData().date;
 
-    console.log('updating date picker to date: ' + date);
+    // console.log('updating date picker to date: ' + date);
     if(date) {
       datepicker.datepicker("update", date);
     }
@@ -30,6 +30,61 @@ Template.datepicker.onRendered(function() {
 
 Template.taskForm.onCreated(function() {
   this.currentPriority = new ReactiveVar( 'No Priority' );
+});
+
+Template.taskForm.onRendered(function() {
+  this.autorun(function() {
+    const priorityLabel = Template.instance().$("#select-priority");
+    const priorityState = Template.instance().currentPriority;
+
+    const selectedTasks = Template.currentData().selectedTasks;
+    if(!selectedTasks) { return; }
+
+    const importantArray = selectedTasks.fetch().map(function(task) {
+      return task.is_important;
+    });
+    const urgentArray = selectedTasks.fetch().map(function(task) {
+      return task.is_urgent;
+    });
+    const sortedArray = selectedTasks.fetch().map(function(task) {
+      return task.is_sorted;
+    });
+
+    const sameImportant = arraySame(importantArray);
+    const sameUrgent = arraySame(urgentArray);
+    const sameSorted = arraySame(sortedArray);
+
+    console.log('Inside taskform onRendered autorun');
+    console.log(sameImportant);
+    console.log(sameUrgent);
+    console.log(sameSorted);
+
+    if(sameImportant && sameUrgent && sameSorted) {
+      const important = importantArray[0];
+      const urgent = urgentArray[0];
+      const sorted = sortedArray[0];
+
+      if(important && urgent) {
+        priorityState.set('Important and Urgent');
+      }
+      else if(important) {
+        priorityState.set('Important');
+      }
+      else if(urgent) {
+        priorityState.set('Urgent');
+      }
+      else if(sorted) {
+        priorityState.set('Someday');
+      }
+      else {
+        priorityState.set('No Priority');
+      }
+    }
+    else {
+      priorityState.set('No Priority');
+    }
+    // priorityLabel.text(priorityState.get());
+  });
 });
 
 Template.taskForm.helpers({
@@ -68,10 +123,6 @@ Template.taskForm.helpers({
     return selectedTasks ? true : false;
   },
 
-  priority() {
-
-  },
-
   date() {
     const instance = Template.instance();
     const selectedTasks = instance.data.selectedTasks;
@@ -85,13 +136,13 @@ Template.taskForm.helpers({
       return date ? date.getTime() : null;
     });
 
-    console.log(dates);
+    // console.log(dates);
     if(arraySame(datesAsNumbers)) {
-      console.log('Dates are the same: ' + dates[0]);
+      // console.log('Dates are the same: ' + dates[0]);
       return dates[0];
     }
     else {
-      console.log('Dates are not the same, passing in null');
+      // console.log('Dates are not the same, passing in null');
       return null;
     }
   },
