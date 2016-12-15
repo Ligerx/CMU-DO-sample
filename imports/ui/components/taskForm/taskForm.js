@@ -37,7 +37,20 @@ Template.taskForm.helpers({
     else {
       return null;
     }
-  }
+  },
+
+  nameDisabled() {
+    const instance = Template.instance();
+    const selectedTasks = instance.data.selectedTasks;
+
+    if (selectedTasks && selectedTasks.count() > 1) {
+      return 'disabled';
+    }
+    else {
+      return null;
+    }
+  },
+
 });
 
 Template.taskForm.events({
