@@ -42,3 +42,31 @@ Template.chunkingModal.onDestroyed(function() {
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
 });
+
+Template.chunking.events({
+  'click .add-chunk': function(){
+    console.log("clicking works");
+    var div = "<input type='text' class='task-chunk-form form-control' name='name' placeholder='What next?'' />";
+    $( ".task-chunk" ).append(div);
+  },
+
+  'submit .chunking-form'(event, template) {
+    event.preventDefault();
+    console.log("attempting submission...");
+
+    var elem = document.getElementById('chunking-form').elements;
+    var array = [];
+
+    for(var i = 0; i < elem.length; i++)
+        {
+          console.log(elem[i].type);
+          if(elem[i].type == "text") array.push(elem[i].value);
+        } 
+        Meteor.call('tasks.massInsert', array);
+
+        console.log(template.data.selectedTasks);
+        const task = template.data.selectedTasks.fetch()[0];
+        Meteor.call('tasks.toggle_completed', task._id);
+  },
+
+})
