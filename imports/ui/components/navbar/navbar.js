@@ -14,6 +14,6 @@ Template.navbar.events({
 Template.navbar.helpers({
 	email(){
 		console.log(Meteor.user());
-		return Meteor.user().email;
+		return Meteor.user().emails[0].address;
 	}
 });
