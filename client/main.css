@@ -206,7 +206,6 @@ label {
 input[type="checkbox"] {
   -webkit-appearance: radio; /* Chrome, Safari, Opera */
   -moz-appearance: radio;    /* Firefox */
-  border: 50px solid #0DFF92;
   width:20px;
   height:20px;
   margin-right: 10px;
