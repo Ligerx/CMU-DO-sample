@@ -289,3 +289,18 @@ input[type="checkbox"] {
 .chunking-modal-button {
   margin-top: 0;
 }
+
+/* Login Style */
+
+#loginStyle{
+  color:white;
+}
+
+/* Register Style */
+
+#registerStyle{
+  color:black;
+}
+
+
+
