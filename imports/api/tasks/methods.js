@@ -29,7 +29,6 @@ Meteor.methods({
 
     let attributes = {
       name,
-      due_on,
       is_sorted,
       is_urgent,
       is_important,
@@ -37,6 +36,10 @@ Meteor.methods({
 
     // Remove any attributes that don't have a value
     clean(attributes);
+
+    // Manually handling due_on, allowing it to be blank so dates can be cleared
+    attributes['due_on'] = due_on;
+
     console.log('attributes are ');
     console.log(attributes);
 
