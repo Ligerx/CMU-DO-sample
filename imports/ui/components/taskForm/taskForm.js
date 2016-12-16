@@ -241,6 +241,12 @@ Template.taskForm.events({
 
       // Clear the session counter
       Session.set('numTasksSelected', 0);
+
+
+      console.log('end of the successCallback')
+      console.log('numTasksSelected ' + Session.get('numTasksSelected'))
+      console.log('num tasks with class ')
+      console.log($('.task.selected'))
     });
   },
 

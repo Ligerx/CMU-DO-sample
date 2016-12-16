@@ -37,23 +37,6 @@ Template.task.helpers({
   },
 
   printPriority() {
-    // TODO: Maybe make this a global helper to be more DRY
-    //       newTask.js has a method like this.
-
-    //// This is broken
-    // const task = this.task;
-    // const array = [];
-    // const priorities = {
-    //   'is_important': 'Important',
-    //   'is_urgent': 'Urgent',
-    // }
-
-    // priorities.forEach(function({val, print}) {
-    //   if( task[val] ) { array.push(print); }
-    // });
-
-    // return array.join(' and ');
-
     const task = this.task;
     if(task.is_important && task.is_urgent) {
       return "Important and Urgent";
@@ -76,7 +59,8 @@ Template.task.events({
     e.stopPropagation();
 
     // Prevent completing a task if it is selected
-    if(instance.state.get('taskSelected')) {
+    let currentlySelected = instance.$('.task').hasClass('selected');
+    if(currentlySelected) {
       e.preventDefault();
       return;
     }
@@ -86,20 +70,21 @@ Template.task.events({
   },
 
   'click .task'(event, instance) {
-    let currentlySelected = instance.state.get('taskSelected');
+    // let currentlySelected = instance.state.get('taskSelected');
+    let currentlySelected = instance.$('.task').hasClass('selected');
 
     // Due to problems with the timing of the class being applied via a helper
     // use jQuery to manually do it here and hope it works...
     instance.$('.task').toggleClass('selected');
 
     updateNumTaskSelected(!currentlySelected);
-    instance.state.set('taskSelected', !currentlySelected);
+    // instance.state.set('taskSelected', !currentlySelected);
   },
 });
 
 Template.task.onCreated(function() {
   this.state = new ReactiveDict();
-  this.state.set('taskSelected', false);
+  // this.state.set('taskSelected', false);
 });
 
 // Update the session to count the number of tasks selected.
