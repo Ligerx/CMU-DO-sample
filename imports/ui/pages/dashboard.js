@@ -18,74 +18,66 @@ Template.dashboard.rendered = function(){
   id: "cmu-tour",
   steps: [
     {
-      title: "Getting Started with CMU-DO",
-      content: "First, lets browse the different categories tasks can go into",
+      title: "Welcome to CMU-DO!",
+      content: "This is a guided tool that will teach you how to manage your tasks.",
       target: "start",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Unsorted is where all tasks go when you create a task and don't assign a priority",
+      title: "Unsorted Tasks",
+      content: "When you create a new task, by default they get put here for you to prioritize later.",
       target: "unsorted",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Urgent and Important are tasks that are time-sensitive and must be completed. Ex: An essay"
-      + " due at midnight that's worth 50% of your grade",
+      title: "Urgent and Important Tasks",
+      content: "These tasks demand immediate attention and heavily impact your personal or academic goals. An example would be a big project due in 3 days.",
       target: "urgent-and-important",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Urgent are tasks that have imminent deadlines",
+      title: "Urgent Tasks",
+      content: "These tasks are last minute, but may not be impactful towards your long term goals. An example would be responding to an email.",
       target: "urgent",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Important are tasks that need to be completed but not are not time-sensitive",
+      title: "Important Tasks",
+      content: "These tasks fulfill long term goals, but do not demand immediate attention. An example of this include planning a trip.",
       target: "important",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Someday are tasks that you would like to do at some point",
+      title: "Someday Tasks",
+      content: "These are neither important or urgent. An example would be playing videogames in the student lounge.",
       target: "someday",
       placement: "bottom"
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Now lets see how you can add tasks",
+      title: "Adding a New Task",
+      content: "Now lets see how you can add a task!",
       target: "modal-button",
       placement: "top",
       onNext: ["showModal"],
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "To create a task, first write the task name",
+      title: "Adding a New Task",
+      content: "To create a task, first write the task name here.",
       target: "text",
       placement: "bottom",
       delay: "500",
       // onNext: ["showModal"],
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Then categorize the task by importance and category",
+      title: "Adding a New Task",
+      content: "On this row, you can set a priority and a due date for a task, although these are optional.",
       target: "select-priority",
-      placement: "bottom",
-      // onNext: ["showModal"],
-    },
-    {
-      title: "Getting Started with CMU-DO",
-      content: "Select the date when the task needs to be completed by",
-      target: "date",
       placement: "bottom",
       onNext: ["closeModal"],
     },
     {
-      title: "Getting Started with CMU-DO",
-      content: "Now you're all set to start using CMU-DO",
+      title: "Congratulations!",
+      content: "Now you're all set to start using CMU-DO!",
       target: "start",
       placement: "bottom",
     },
