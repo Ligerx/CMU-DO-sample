@@ -19,7 +19,15 @@
           <li><a href="/dashboard">Dashboard</a></li>
           <li><a href="/history">Task History</a></li>
         </ul>
-
+        <!-- <ul class="nav navbar-nav navbar-right">
+          {{email}}
+        </ul> -->
+        {{#if currentUser}}
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li>{{> loginButtons}}</li> -->
+            <li><a href="/" class="logout">Logout</a></li>
+          </ul>
+        {{/if}}
         <!-- <ul class="nav navbar-nav navbar-right">
           <li>{{> loginButtons}}</li>
         </ul> -->
