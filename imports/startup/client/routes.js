@@ -80,9 +80,11 @@ FlowRouter.triggers.enter([function(context, redirect) {
 }], { only: ["dashboard", "history"] });
 
 Accounts.onLogout(function() {
+  $('.collapse').collapse('hide');
   FlowRouter.go("/");
 });
 
 Accounts.onLogin(function() {
+  $('.collapse').collapse('hide');
   FlowRouter.go("/dashboard");
 });

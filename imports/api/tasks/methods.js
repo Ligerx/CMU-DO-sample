@@ -78,6 +78,12 @@ Meteor.methods({
     });
   },
 
+  'users.completeOnboarding' (userId) {
+    if (! this.userId) { throw new Meteor.Error('user-missing'); }
+
+    Meteor.users.update({ _id: userId }, { $set: { completedOnboarding: true } });
+  },
+
   // Link to the boiler plate code from the tutorial if you wanna copy-pasta some stuff:
   // https://github.com/meteor/simple-todos/blob/master/imports/api/tasks.js
 
