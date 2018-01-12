@@ -20,7 +20,7 @@ Template.dashboard.rendered = function(){
     {
       title: "Welcome to CMU-DO!",
       content: "This is a guided tool that will teach you how to manage your tasks.",
-      target: "start",
+      target: "logo",
       placement: "bottom"
     },
     {
@@ -65,7 +65,7 @@ Template.dashboard.rendered = function(){
       content: "To create a task, first write the task name here.",
       target: "text",
       placement: "bottom",
-      delay: "500",
+      delay: "600",
       // onNext: ["showModal"],
     },
     {
@@ -78,7 +78,7 @@ Template.dashboard.rendered = function(){
     {
       title: "Congratulations!",
       content: "Now you're all set to start using CMU-DO!",
-      target: "start",
+      target: "logo",
       placement: "bottom",
     },
   ]
