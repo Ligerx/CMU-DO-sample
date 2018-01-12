@@ -7,6 +7,9 @@ Template.navbar.events({
   'click .logout': function(event){
       event.preventDefault();
       Meteor.logout();
+
+      // Also reload the page. This probably lets the onboarding reset.
+      location.reload();
   }
 });
 
