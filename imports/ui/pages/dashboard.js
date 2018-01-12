@@ -51,7 +51,7 @@ Template.dashboard.rendered = function(){
       title: "Someday Tasks",
       content: "These are neither important or urgent. An example would be playing videogames in the student lounge.",
       target: "someday",
-      placement: "bottom"
+      placement: "top"
     },
     {
       title: "Adding a New Task",
@@ -104,7 +104,7 @@ Template.dashboard.rendered = function(){
   // Attempt to wait for the account to be created first
   setTimeout(function() {
     if(Meteor.user() && !Meteor.user().completedOnboarding) {
-      hopscotch.startTour(tour);
+      hopscotch.startTour(tour, 0);
 
       // TODO: this listener is never destroyed
       hopscotch.listen('end', () => {
