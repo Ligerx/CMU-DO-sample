@@ -32,3 +32,4 @@ reactive-dict
 session
 kadira:dochead
 mikkelking:meteor-hopscotch
+artwells:accounts-guest
