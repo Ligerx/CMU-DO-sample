@@ -14,17 +14,27 @@ import { Tasks } from'../../api/api.js';
 // Really not sure where to put this, so I'm sticking it here...
 // When the user is created, add a completedOnboarding attribute
 Accounts.onCreateUser(function(options, user) {
+
+  console.log("beginning of onCreateUser server function");
+  console.log(options);
+  console.log(user);
+
   // Default behavior that needs to be included
   if (options.profile){
     user.profile = options.profile;
   }
 
   // Adding the attribute to track if they need onboarding
-  user.completedOnboarding = false;
+  // user.completedOnboarding = false; // guest accounts seem to be wiping this for some reason...
+  user.profile['completedOnboarding'] = false;
 
   // Since these are new guest users, they have no data
   // prepopulate some tasks for them
   insertTasks(prepopulatedTasks, user._id)
+
+
+  console.log("end of onCreateUser server function");
+  console.log(user);
 
   return user;
 });

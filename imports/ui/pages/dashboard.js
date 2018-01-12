@@ -104,7 +104,11 @@ Template.dashboard.rendered = function(){
   // so Meteor.user() doesn't exist for a little while.
   // Make sure user gets logged in first before triggering onboarding.
   Accounts.onLogin(function() {
-    if(Meteor.user() && !Meteor.user().completedOnboarding) {
+
+    console.log("Inside the onLogin callback");
+    console.log(Meteor.user());
+
+    if(Meteor.user() && !Meteor.user().profile.completedOnboarding) {
       hopscotch.startTour(tour, 0);
 
       // TODO: this listener is never destroyed

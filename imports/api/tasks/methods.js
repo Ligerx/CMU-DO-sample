@@ -84,7 +84,8 @@ Meteor.methods({
   'users.completeOnboarding' (userId) {
     if (! this.userId) { throw new Meteor.Error('user-missing'); }
 
-    Meteor.users.update({ _id: userId }, { $set: { completedOnboarding: true } });
+    // Meteor.users.update({ _id: userId }, { $set: { completedOnboarding: true } });
+    Meteor.users.update({ _id: userId }, { $set: { 'profile.completedOnboarding': true } });
   },
 
   // Link to the boiler plate code from the tutorial if you wanna copy-pasta some stuff:
