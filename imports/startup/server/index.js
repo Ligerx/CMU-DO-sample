@@ -15,9 +15,9 @@ import { Tasks } from'../../api/api.js';
 // When the user is created, add a completedOnboarding attribute
 Accounts.onCreateUser(function(options, user) {
 
-  console.log("beginning of onCreateUser server function");
-  console.log(options);
-  console.log(user);
+  // console.log("beginning of onCreateUser server function");
+  // console.log(options);
+  // console.log(user);
 
   // Default behavior that needs to be included
   if (options.profile){
@@ -33,8 +33,8 @@ Accounts.onCreateUser(function(options, user) {
   insertTasks(prepopulatedTasks, user._id)
 
 
-  console.log("end of onCreateUser server function");
-  console.log(user);
+  // console.log("end of onCreateUser server function");
+  // console.log(user);
 
   return user;
 });
