@@ -21,7 +21,8 @@ Template.dashboard.rendered = function(){
       title: "Welcome to CMU-DO!",
       content: "This is a guided tool that will teach you how to manage your tasks.",
       target: "logo",
-      placement: "bottom"
+      placement: "bottom",
+      delay: 500
     },
     {
       title: "Unsorted Tasks",
@@ -101,8 +102,8 @@ Template.dashboard.rendered = function(){
 
   // Problem - the auto-guest-login is slow
   // so Meteor.user() doesn't exist for a little while.
-  // Attempt to wait for the account to be created first
-  setTimeout(function() {
+  // Make sure user gets logged in first before triggering onboarding.
+  Accounts.onLogin(function() {
     if(Meteor.user() && !Meteor.user().completedOnboarding) {
       hopscotch.startTour(tour, 0);
 
@@ -111,7 +112,7 @@ Template.dashboard.rendered = function(){
         Meteor.call('users.completeOnboarding', Meteor.userId());
       });
     }
-  }, 1500);
+  });
 }
 
 Template.dashboard.helpers({
