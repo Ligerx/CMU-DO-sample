@@ -10,6 +10,11 @@ if (Meteor.isServer) {
   // Publish additional information from the User collection
   Meteor.publish("userData", function () {
     if (this.userId) {
+
+      // console.log("In API.js, testing what's sent to the client")
+      // console.log(Meteor.users.find({_id: this.userId},
+                               // {fields: {'completedOnboarding': 1}}).fetch());
+
       return Meteor.users.find({_id: this.userId},
                                {fields: {'completedOnboarding': 1}});
     } else {

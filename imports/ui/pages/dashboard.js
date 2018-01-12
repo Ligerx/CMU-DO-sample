@@ -91,14 +91,27 @@ Template.dashboard.rendered = function(){
     $('.modal').modal('hide');
   });
 
-  if(Meteor.user() && !Meteor.user().completedOnboarding) {
-    hopscotch.startTour(tour);
+  // console.log("Inside dashboard onboarding");
+  // console.log(Meteor.user());
 
-    // TODO: this listener is never destroyed
-    hopscotch.listen('end', () => {
-      Meteor.call('users.completeOnboarding', Meteor.userId());
-    });
-  }
+  // setTimeout(function() {
+  //   console.log("Delayed check if user is logged in");
+  //   console.log(Meteor.user());
+  // }, 1000);
+
+  // Problem - the auto-guest-login is slow
+  // so Meteor.user() doesn't exist for a little while.
+  // Attempt to wait for the account to be created first
+  setTimeout(function() {
+    if(Meteor.user() && !Meteor.user().completedOnboarding) {
+      hopscotch.startTour(tour);
+
+      // TODO: this listener is never destroyed
+      hopscotch.listen('end', () => {
+        Meteor.call('users.completeOnboarding', Meteor.userId());
+      });
+    }
+  }, 1500);
 }
 
 Template.dashboard.helpers({
