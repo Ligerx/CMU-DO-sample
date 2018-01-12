@@ -34,28 +34,9 @@ FlowRouter.route('/history', {
   name: 'history',
 });
 
-FlowRouter.route('/home', {
-  action: function(params, queryParams) {
-    BlazeLayout.render('layout', { page: 'home' });
-  },
-  name: 'home',
-});
-
-FlowRouter.route('/login', {
-  action: function(params, queryParams) {
-    BlazeLayout.render('layout', { page: 'login' });
-  }
-});
-
-FlowRouter.route('/register', {
-  action: function(params, queryParams) {
-    BlazeLayout.render('layout', { page: 'register' });
-  }
-});
-
 FlowRouter.route('/', {
   triggersEnter: [function(context, redirect) {
-    redirect('/home');
+    redirect('/dashboard');
   }]
 });
 
@@ -64,27 +45,3 @@ FlowRouter.route('/', {
 FlowRouter.triggers.enter([function() {
   Session.set('numTasksSelected', 0);
 }]);
-
-// Redirect if logged in
-FlowRouter.triggers.enter([function(context, redirect) {
-  if(Meteor.loggingIn() || Meteor.userId()) {
-    redirect('/dashboard');
-  }
-}], { except: ["dashboard", "history"] });
-
-// Redirect if not logged in
-FlowRouter.triggers.enter([function(context, redirect) {
-  if(!Meteor.userId()) {
-    redirect('/');
-  }
-}], { only: ["dashboard", "history"] });
-
-Accounts.onLogout(function() {
-  $('.collapse').collapse('hide');
-  FlowRouter.go("/");
-});
-
-Accounts.onLogin(function() {
-  $('.collapse').collapse('hide');
-  FlowRouter.go("/dashboard");
-});
