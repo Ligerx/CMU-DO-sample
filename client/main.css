@@ -122,7 +122,9 @@ nav a {
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
 }
-
+.btn-default {
+  background: #ddd;
+}
 .btn-primary {
     background: #0099cc;
     color: #ffffff;
