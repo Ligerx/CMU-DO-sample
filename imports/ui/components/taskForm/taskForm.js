@@ -33,6 +33,13 @@ Template.taskForm.onCreated(function() {
 });
 
 Template.taskForm.onRendered(function() {
+  // Autofocus text input on modal show
+  // the below code works on .modal, but not .task-form-modal for some reason.
+  $('.modal').on('shown.bs.modal', function () {
+    $('.task-name').focus();
+  });
+
+
   this.autorun(function() {
     const priorityLabel = Template.instance().$("#select-priority");
     const priorityState = Template.instance().currentPriority;
@@ -247,6 +254,9 @@ Template.taskForm.events({
       console.log('numTasksSelected ' + Session.get('numTasksSelected'))
       console.log('num tasks with class ')
       console.log($('.task.selected'))
+
+      // Autofocus the input form
+      focusInput(this);
     });
   },
 
@@ -290,4 +300,8 @@ function arraySame(array) {
   return array.every(function(element) {
     return element == first;
   });
+}
+
+function focusInput(parentElement) {
+  parentElement.$('.task-name').focus();
 }
