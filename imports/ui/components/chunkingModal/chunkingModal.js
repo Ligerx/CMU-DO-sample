@@ -46,7 +46,7 @@ Template.chunkingModal.onDestroyed(function() {
 Template.chunking.events({
   'click .add-chunk': function(){
     console.log("clicking works");
-    var div = "<input type='text' class='task-chunk-form form-control' name='name' placeholder='What next?'' />";
+    var div = "<input type='text' class='following-chunks form-control' name='name' placeholder='What next?'' />";
     $( ".task-chunk" ).append(div);
   },
 
@@ -61,7 +61,7 @@ Template.chunking.events({
         {
           console.log(elem[i].type);
           if(elem[i].type == "text") array.push(elem[i].value);
-        } 
+        }
         Meteor.call('tasks.massInsert', array);
 
         console.log(template.data.selectedTasks);

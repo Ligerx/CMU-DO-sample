@@ -8,13 +8,9 @@
 
       <div class="modal-content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12">
-              <h2>Break a task into smaller chunks</h2>
+          <h2>Break a task into smaller chunks</h2>
 
-              <h5>{{taskName}}</h5>
-            </div>
-          </div>
+          <h5>{{taskName}}</h5>
 
           {{> chunking}}
         </div>
@@ -44,5 +40,5 @@
 </template>
 
 <template name="chunkForm">
-  <input type="text" class="task-form-btn task-chunk-form form-control" name="name" placeholder="What's the first step to completing this task?" />
+  <input type="text" class="form-control" name="name" placeholder="What's the first step to completing this task?" />
 </template>

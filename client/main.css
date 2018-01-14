@@ -316,3 +316,7 @@ input[type="checkbox"] {
   cursor: pointer;
   font-size: 13px;
 }
+
+.following-chunks {
+  margin-top: 6px;
+}
